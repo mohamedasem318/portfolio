@@ -22,7 +22,7 @@ export const useHaptics = () => {
         const unlock = () => {
             if (hasInteracted.current) return;
             // Prime the hardware API during a direct user gesture
-            try { navigator.vibrate(1); } catch (e) { }
+            try { navigator.vibrate(1); } catch (e) { /* ignore */ }
             hasInteracted.current = true;
             window.removeEventListener("click", unlock);
             window.removeEventListener("touchend", unlock);
@@ -60,7 +60,7 @@ export const useHaptics = () => {
             const newState = !prev;
             // Provide a test buzz if they just turned it on
             if (newState && isSupported) {
-                try { navigator.vibrate(50); } catch (e) { }
+                try { navigator.vibrate(50); } catch (e) { /* ignore */ }
             }
             return newState;
         });
