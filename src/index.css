@@ -132,3 +132,54 @@
     background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.6));
   }
 }
+
+@media print {
+
+  /* Hide interactive elements and UI that shouldn't appear in the PDF */
+  nav,
+  footer,
+  button,
+  a[href^="#"],
+  .fixed,
+  #scroll-to-top {
+    display: none !important;
+  }
+
+  /* Force light mode styles for printing readability */
+  body {
+    background-color: white !important;
+    color: black !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Remove glassmorphism effects for cleaner printing */
+  .glass {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+  }
+
+  /* Remove glowing text / gradient text so it's sharp and readable */
+  .glow-text,
+  .text-gradient {
+    color: black !important;
+    text-shadow: none !important;
+    -webkit-text-fill-color: black !important;
+  }
+
+  /* Expand project/skill containers to show all content without scrolling */
+  * {
+    overflow: visible !important;
+    height: auto !important;
+    page-break-inside: avoid;
+  }
+
+  /* Ensure each main section starts on a new page */
+  section {
+    page-break-before: always;
+    padding: 2rem 0 !important;
+    margin: 0 !important;
+  }
+}
