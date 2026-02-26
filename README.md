@@ -2,7 +2,7 @@
 
 A high-performance, interactive portfolio for **Mohamed Assem**, Software Engineer & Creative Technologist. Built to deliver a premium, "presentation-deck" aesthetic that highlights full-stack engineering, AI/ML projects, and precision UI/UX design work.
 
-🔗 **Live Site**: *(deploy to Vercel / Netlify and update this link)*
+🔗 **Live Site**: https://mohamedasem318.github.io/portfolio/
 
 ---
 
@@ -117,18 +117,12 @@ public/
 
 ## Deployment
 
-The site is entirely self-contained and can be deployed to any static host.
+The site is configured to deploy directly to GitHub Pages.
 
-**Vercel (recommended)**:
+**Deploying Updates**:
 ```sh
-npm install -g vercel
-vercel --prod
+# This will automatically build the site and push it to the gh-pages branch
+npm run deploy
 ```
 
-**Netlify**:
-```sh
-npm run build
-# Drag and drop /dist into Netlify, or connect your repo.
-```
-
-After deploying, update the `og:url` meta tag in `index.html` with your actual live URL.
+After deploying, it may take 1-2 minutes for GitHub Pages to refresh the live site.
