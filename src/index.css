@@ -145,20 +145,39 @@
     display: none !important;
   }
 
-  /* Force light mode styles for printing readability */
+  /* Force Tailwind variables to plain light mode for print readability */
+  :root,
+  .dark {
+    --background: 0 0% 100% !important;
+    --foreground: 0 0% 0% !important;
+    --muted: 0 0% 90% !important;
+    --muted-foreground: 0 0% 30% !important;
+    --border: 0 0% 80% !important;
+  }
+
+  html,
   body {
     background-color: white !important;
     color: black !important;
-    height: auto !important;
-    overflow: visible !important;
   }
 
-  /* Remove glassmorphism effects for cleaner printing */
+  /* Prevent sections from taking up the full screen height on paper */
+  section {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 2rem 0 !important;
+    margin: 0 !important;
+    page-break-inside: auto;
+  }
+
+  /* Keep glass cards clean, remove shadows, and prevent them from cutting in half across pages */
   .glass {
     background: transparent !important;
     backdrop-filter: none !important;
     border: 1px solid #ccc !important;
     box-shadow: none !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 
   /* Remove glowing text / gradient text so it's sharp and readable */
@@ -167,19 +186,5 @@
     color: black !important;
     text-shadow: none !important;
     -webkit-text-fill-color: black !important;
-  }
-
-  /* Expand project/skill containers to show all content without scrolling */
-  * {
-    overflow: visible !important;
-    height: auto !important;
-    page-break-inside: avoid;
-  }
-
-  /* Ensure each main section starts on a new page */
-  section {
-    page-break-before: always;
-    padding: 2rem 0 !important;
-    margin: 0 !important;
   }
 }
