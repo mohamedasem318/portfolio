@@ -161,10 +161,14 @@
     color: black !important;
   }
 
-  /* Prevent sections from taking up the full screen height on paper */
+  /* Prevent sections from taking up the full screen height on paper and disable overflow clipping */
+  #root,
+  main,
+  .section-padding,
   section {
     min-height: 0 !important;
     height: auto !important;
+    overflow: visible !important;
     padding: 2rem 0 !important;
     margin: 0 !important;
     page-break-inside: auto;

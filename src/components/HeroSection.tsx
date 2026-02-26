@@ -64,7 +64,7 @@ const HeroSection = () => {
                 className="w-full h-full object-cover scale-[1.25] -translate-x-4 sm:-translate-x-6 translate-y-2"
               />
               {/* Inner vignetter (Dark Mode Only) */}
-              <div className="absolute inset-0 rounded-full pointer-events-none dark:shadow-[inset_0_0_50px_20px_hsl(var(--background))]" />
+              <div className="absolute inset-0 rounded-full pointer-events-none dark:shadow-[inset_0_0_50px_20px_hsl(var(--background))] print:shadow-none" />
             </div>
           </div>
         </motion.div>
