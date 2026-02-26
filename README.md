@@ -29,7 +29,7 @@ A high-performance, interactive portfolio for **Mohamed Assem**, Software Engine
 
 ```sh
 # 1. Clone the repository
-git clone <YOUR_GIT_URL>
+git clone https://github.com/mohamedasem318/portfolio.git
 cd creative-tech-studio-main
 
 # 2. Install dependencies
