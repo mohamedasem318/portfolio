@@ -94,7 +94,7 @@ const projects: Project[] = [
     ],
   },
   {
-    title: "Alzheimer's Stage Detection AI",
+    title: "Deep-Learning-Powered System for Detecting Stages of Alzheimer's Disease",
     category: "Presentation",
     description:
       "A comprehensive scientific presentation deck detailing deep learning methodologies for detecting Alzheimer's stages. Features custom data visualizations, clear typographic hierarchy, and professional slide layouts.",
@@ -107,10 +107,10 @@ const projects: Project[] = [
     imagePosition: "object-center",
   },
   {
-    title: "Pelvis Bone Dynamic Analysis",
+    title: "Dynamic Analysis on Human Pelvic Bone",
     category: "Presentation",
     description:
-      "An engineering and biographical presentation breaking down complex biomechanical analysis. Designed to present dense technical information with engaging graphical clarity and structural flow.",
+      "A dynamic analysis study conducted in Ansys to measure equivalent stress and total deformation of the pelvic bone during forced frontal car impacts (5 and 30 m/sec), simulating common accident scenarios.",
     cover: presentationPelvis,
     tags: [
       { label: "PowerPoint", Icon: PiMicrosoftPowerpointLogo },
@@ -133,10 +133,10 @@ const projects: Project[] = [
     imagePosition: "object-center",
   },
   {
-    title: "X-Ray Image Contrast Analysis",
+    title: "X-Ray Image Contrast",
     category: "Presentation",
     description:
-      "A medical imaging presentation demonstrating image processing techniques. Utilizes high-contrast layouts and focused annotations to highlight subtle visual changes in radiographic data.",
+      "An exploration of factors affecting X-ray image contrast, examining how variables like kVp, filtration, anode heel effect, and receptor exposure influence both digital and analog radiographic contrast scales.",
     cover: presentationXray,
     tags: [
       { label: "PowerPoint", Icon: PiMicrosoftPowerpointLogo },
