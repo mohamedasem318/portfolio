@@ -281,7 +281,7 @@ const ProjectsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="flex flex-wrap justify-center gap-3 mb-12 md:mb-16 print:hidden"
+            className="flex flex-wrap justify-center gap-3 mb-12 md:mb-16"
           >
             {filters.map((f) => {
               const isActive = activeFilter === f;

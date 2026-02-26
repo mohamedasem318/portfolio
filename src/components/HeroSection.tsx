@@ -24,7 +24,7 @@ const HeroSection = () => {
           <p className="text-lg sm:text-xl font-medium mb-10 text-muted-foreground max-w-lg leading-relaxed">
             I don't just write code. I orchestrate digital ecosystems. Bridging complex engineering with creative design to build smart, secure, and visually striking experiences.
           </p>
-          <div className="flex flex-wrap gap-4 print:hidden">
+          <div className="flex flex-wrap gap-4">
             <a
               href="#contact"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold shadow-[0_0_20px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)] hover:scale-105 transition-all"
@@ -64,7 +64,7 @@ const HeroSection = () => {
                 className="w-full h-full object-cover scale-[1.25] -translate-x-4 sm:-translate-x-6 translate-y-2"
               />
               {/* Inner vignetter (Dark Mode Only) */}
-              <div className="absolute inset-0 rounded-full pointer-events-none dark:shadow-[inset_0_0_50px_20px_hsl(var(--background))] print:hidden" />
+              <div className="absolute inset-0 rounded-full pointer-events-none dark:shadow-[inset_0_0_50px_20px_hsl(var(--background))]" />
             </div>
           </div>
         </motion.div>
