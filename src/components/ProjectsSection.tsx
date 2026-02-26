@@ -300,7 +300,19 @@ const ProjectsSection = () => {
             })}
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 xl:grid-cols-2 gap-8 lg:gap-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.1 }
+              }
+            }}
+            className="grid sm:grid-cols-2 xl:grid-cols-2 gap-8 lg:gap-10"
+          >
             <AnimatePresence mode="popLayout">
               {filtered.map((project, idx) => {
                 const isPresentation = project.category === "Presentation";
@@ -309,12 +321,12 @@ const ProjectsSection = () => {
                   <motion.div
                     key={project.title}
                     layout
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    variants={{
+                      hidden: { opacity: 0, y: 30 },
+                      visible: { opacity: 1, y: 0 }
+                    }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.4, ease: "easeOut", delay: idx * 0.1 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
                     whileHover={{ y: -6 }}
                     className="glass rounded-xl overflow-hidden glow-box group transition-all duration-300 flex flex-col"
                   >
@@ -423,11 +435,13 @@ const ProjectsSection = () => {
                 );
               })}
             </AnimatePresence>
-          </div>
+          </motion.div>
         </div>
       </section>
     </>
   );
 };
+
+export default ProjectsSection;
 
 export default ProjectsSection;
