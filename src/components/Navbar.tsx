@@ -22,6 +22,29 @@ const Navbar = ({ isDark, onToggleTheme }: NavbarProps) => {
   const [activeSection, setActiveSection] = useState("");
   const { hapticsEnabled, toggleHaptics, vibrate, isSupported } = useHaptics();
 
+  const handleMobileNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setMobileOpen(false);
+
+    // Give the menu a tiny fraction of a second to start animating closed before scrolling
+    setTimeout(() => {
+      const targetId = href.replace('#', '');
+      if (!targetId) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+      const element = document.getElementById(targetId);
+      if (element) {
+        // Offset by 80px to account for the fixed navbar height
+        const offsetTop = element.offsetTop - 80;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth"
+        });
+      }
+    }, 150);
+  };
+
   // Trigger haptic feedback when scrolling into a new section
   useEffect(() => {
     if (activeSection) {
@@ -141,7 +164,7 @@ const Navbar = ({ isDark, onToggleTheme }: NavbarProps) => {
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => handleMobileNavClick(e, link.href)}
                   className={`text-sm font-medium transition-colors py-2 ${activeSection === link.href
                     ? "text-primary font-bold bg-primary/10 rounded-md px-3 border border-primary/20"
                     : "text-muted-foreground hover:text-primary px-3"

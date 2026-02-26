@@ -20,19 +20,19 @@ export const useHaptics = () => {
         if (!isSupported) return;
 
         const unlock = () => {
+            if (hasInteracted.current) return;
+            // Prime the hardware API during a direct user gesture
+            try { navigator.vibrate(1); } catch (e) { }
             hasInteracted.current = true;
-            window.removeEventListener("pointerdown", unlock);
-            window.removeEventListener("keydown", unlock);
+            window.removeEventListener("click", unlock);
             window.removeEventListener("touchstart", unlock);
         };
 
-        window.addEventListener("pointerdown", unlock, { once: true });
-        window.addEventListener("keydown", unlock, { once: true });
+        window.addEventListener("click", unlock, { once: true });
         window.addEventListener("touchstart", unlock, { once: true });
 
         return () => {
-            window.removeEventListener("pointerdown", unlock);
-            window.removeEventListener("keydown", unlock);
+            window.removeEventListener("click", unlock);
             window.removeEventListener("touchstart", unlock);
         };
     }, [isSupported]);
