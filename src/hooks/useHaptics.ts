@@ -25,15 +25,15 @@ export const useHaptics = () => {
             try { navigator.vibrate(1); } catch (e) { }
             hasInteracted.current = true;
             window.removeEventListener("click", unlock);
-            window.removeEventListener("touchstart", unlock);
+            window.removeEventListener("touchend", unlock);
         };
 
         window.addEventListener("click", unlock, { once: true });
-        window.addEventListener("touchstart", unlock, { once: true });
+        window.addEventListener("touchend", unlock, { once: true });
 
         return () => {
             window.removeEventListener("click", unlock);
-            window.removeEventListener("touchstart", unlock);
+            window.removeEventListener("touchend", unlock);
         };
     }, [isSupported]);
 
