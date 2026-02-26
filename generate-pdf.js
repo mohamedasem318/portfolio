@@ -13,7 +13,7 @@
 import puppeteer from "puppeteer";
 
 // ── Config ────────────────────────────────────────────────────────────────────
-const TARGET_URL = "http://localhost:8080"; // change to your deployed URL if preferred
+const TARGET_URL = "https://mohamedasem318.github.io/portfolio/"; // Uses the live deployment
 const OUTPUT_FILE = "portfolio.pdf";
 
 // A narrower layout like 1200x800 makes content appear larger and more readable.

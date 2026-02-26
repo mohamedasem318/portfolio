@@ -47,6 +47,19 @@ npm run build
 # Output will be in the /dist directory
 ```
 
+### PDF Generation
+
+You can generate a pixel-perfect, continuous PDF of the live portfolio using the included Puppeteer script. It accurately captures the full HD layout and automatically scrolls to trigger all entry animations before exporting.
+
+```sh
+# 1. Install dependencies (including Puppeteer)
+npm install
+
+# 2. Run the generator script (it connects to the live GitHub Pages deployment by default)
+node generate-pdf.js
+```
+The resulting `portfolio.pdf` will be saved directly in the project root.
+
 ---
 
 ## Architecture Overview
@@ -79,6 +92,9 @@ On large desktop viewports (`lg:`+), font sizes, padding, and card dimensions ar
 
 **4. SEO & Social Metadata**
 `index.html` contains full OpenGraph and Twitter Card meta tags. Sharing the link on any social platform generates a rich preview card with title, description, and the custom "MA" favicon.
+
+**5. Haptic Feedback & Micro-interactions**
+Interactive elements throughout the portfolio, including buttons and navigation, provide satisfying micro-interactions and haptic-style visual feedback to enhance the premium, tactile feel of the user experience.
 
 ---
 
