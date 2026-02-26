@@ -95,6 +95,8 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    /* Offsets anchor links by 80px to account for the fixed navbar */
   }
 
   body {

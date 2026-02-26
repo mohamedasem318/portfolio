@@ -24,25 +24,30 @@ const Navbar = ({ isDark, onToggleTheme }: NavbarProps) => {
 
   const handleMobileNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+
+    // 1. Immediately close the menu in React state
     setMobileOpen(false);
 
-    // Give the menu a tiny fraction of a second to start animating closed before scrolling
+    // 2. Wait for the menu's AnimatePresence exit animation to finish unmounting (it takes 300ms default)
+    // BEFORE telling the browser to start scrolling. This guarantees the scroll isn't aborted mid-way
+    // by the element disappearing from the DOM.
     setTimeout(() => {
       const targetId = href.replace('#', '');
       if (!targetId) {
         window.scrollTo({ top: 0, behavior: "smooth" });
         return;
       }
+
       const element = document.getElementById(targetId);
       if (element) {
-        // Offset by 80px to account for the fixed navbar height
-        const offsetTop = element.offsetTop - 80;
+        // Calculate absolute position relative to document
+        const topPos = element.getBoundingClientRect().top + window.scrollY - 80;
         window.scrollTo({
-          top: offsetTop,
+          top: topPos,
           behavior: "smooth"
         });
       }
-    }, 150);
+    }, 400); // Wait 400ms to ensure the menu is visually gone before scrolling
   };
 
   // Trigger haptic feedback when scrolling into a new section
@@ -63,10 +68,11 @@ const Navbar = ({ isDark, onToggleTheme }: NavbarProps) => {
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetHeight = element.offsetHeight;
+          const rect = element.getBoundingClientRect();
+          const topPos = rect.top + window.scrollY;
+          const offsetHeight = rect.height;
 
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          if (scrollPosition >= topPos && scrollPosition < topPos + offsetHeight) {
             currentSection = `#${section}`;
             break;
           }
