@@ -165,10 +165,13 @@
   #root,
   main,
   .section-padding,
-  section {
+  section,
+  .min-h-screen,
+  .flex {
     min-height: 0 !important;
     height: auto !important;
     overflow: visible !important;
+    display: block !important;
     padding: 2rem 0 !important;
     margin: 0 !important;
     page-break-inside: auto;
