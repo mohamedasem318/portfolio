@@ -13,13 +13,12 @@
 import puppeteer from "puppeteer";
 
 // ── Config ────────────────────────────────────────────────────────────────────
-const TARGET_URL = "http://localhost:5173"; // change to your deployed URL if preferred
+const TARGET_URL = "http://localhost:8080"; // change to your deployed URL if preferred
 const OUTPUT_FILE = "portfolio.pdf";
 
-// Full HD viewport – matches a 1920×1080 monitor so nothing is cut off or
-// reflowed by a narrow viewport.
-const VIEWPORT_WIDTH = 1920;
-const VIEWPORT_HEIGHT = 1080;
+// A narrower layout like 1200x800 makes content appear larger and more readable.
+const VIEWPORT_WIDTH = 1200;
+const VIEWPORT_HEIGHT = 800;
 
 // How long to wait after each scroll step (ms) so Framer Motion animations fire.
 const SCROLL_PAUSE = 400;
@@ -30,8 +29,6 @@ const SCROLL_PAUSE = 400;
 
     const browser = await puppeteer.launch({
         headless: true,
-        // --start-maximized alone isn't reliable in headless mode; we set the
-        // viewport explicitly instead.
         args: [
             "--no-sandbox",
             "--disable-setuid-sandbox",
@@ -41,12 +38,10 @@ const SCROLL_PAUSE = 400;
 
     const page = await browser.newPage();
 
-    // Force the viewport to full HD so every responsive breakpoint renders at
-    // desktop width, matching what a real full-screen browser would show.
     await page.setViewport({
         width: VIEWPORT_WIDTH,
         height: VIEWPORT_HEIGHT,
-        deviceScaleFactor: 1,
+        deviceScaleFactor: 1, // Change to 2 for high-res output if needed
     });
 
     console.log(`🌐  Navigating to ${TARGET_URL}…`);
@@ -62,21 +57,28 @@ const SCROLL_PAUSE = 400;
         await new Promise((r) => setTimeout(r, SCROLL_PAUSE));
     }
 
-    // Scroll back to the top so the PDF starts from the hero section.
+    // Scroll back to the top
     await page.evaluate(() => window.scrollTo(0, 0));
     await new Promise((r) => setTimeout(r, 500));
+
+    // Lock dynamic height classes so they don't stretch to the total PDF height
+    await page.addStyleTag({
+        content: `
+          .min-h-screen { min-height: ${VIEWPORT_HEIGHT}px !important; }
+          .h-screen { height: ${VIEWPORT_HEIGHT}px !important; }
+        `
+    });
+
+    const finalHeight = await page.evaluate(() => document.documentElement.scrollHeight);
 
     // ── Print to PDF ─────────────────────────────────────────────────────────────
     console.log(`📄  Generating ${OUTPUT_FILE}…`);
     await page.pdf({
         path: OUTPUT_FILE,
-        // A3 landscape gives enough width to render the 1920px layout without
-        // extra page-breaking or scaling artifacts.
-        format: "A3",
-        landscape: true,
-        printBackground: true, // include background colours / gradients
-        margin: { top: "0", right: "0", bottom: "0", left: "0" },
-        scale: 0.6, // fits the 1920-wide layout onto A3 paper cleanly
+        printBackground: true,
+        width: VIEWPORT_WIDTH + "px",
+        height: finalHeight + "px", // Make it one continuous page
+        pageRanges: "1",
     });
 
     await browser.close();
