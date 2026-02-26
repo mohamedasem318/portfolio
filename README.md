@@ -37,7 +37,7 @@ npm install
 
 # 3. Start the dev server
 npm run dev
-# → Opens at http://localhost:5173
+# → Opens at http://localhost:8080
 ```
 
 ### Production Build
