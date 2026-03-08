@@ -42,7 +42,7 @@ const categories = [
     skills: [
       { name: "Adobe Photoshop", icon: SiAdobephotoshop },
       { name: "Adobe Illustrator", icon: SiAdobeillustrator },
-      { name: "PowerPoint Design", icon: PiMicrosoftPowerpointLogo },
+      { name: "Microsoft PowerPoint", icon: PiMicrosoftPowerpointLogo },
     ],
   },
 ];

@@ -44,9 +44,9 @@ interface Project {
 }
 
 const categoryStyles: Record<ProjectCategory, string> = {
-  "Web App": "bg-blue-500/15 text-blue-400 border-blue-500/30",
-  "Desktop App": "bg-amber-500/15 text-amber-400 border-amber-500/30",
-  "Presentation": "bg-violet-500/15 text-violet-400 border-violet-500/30",
+  "Web App": "bg-sky-500/15 text-sky-600 dark:text-sky-400 border-sky-500/30",
+  "Desktop App": "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30",
+  "Presentation": "bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/30",
 };
 
 const projects: Project[] = [
@@ -74,6 +74,7 @@ const projects: Project[] = [
       "https://www.behance.net/gallery/244723563/CerebroScan-AI-Powered-Alzheimers-Detection-Web-App",
     liveUrl: "https://cerebroscan-app.hf.space/",
     tags: [
+      { label: "React", Icon: SiReact },
       { label: "Python", Icon: SiPython },
       { label: "Flask", Icon: SiFlask },
       { label: "Deep Learning", Icon: BrainCircuit },

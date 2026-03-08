@@ -39,7 +39,7 @@ const AboutSection = () => {
             className="flex justify-center lg:justify-start"
           >
             <div className="animate-float">
-              <div className="relative w-full max-w-md aspect-[4/5] rounded-2xl overflow-hidden border border-primary/30 shadow-[0_0_30px_hsl(var(--primary)/0.25)] dark:border-cyan-500/30 dark:shadow-[0_0_30px_rgba(6,182,212,0.25)] glow-box">
+              <div className="relative w-full max-w-md aspect-[4/5] rounded-2xl overflow-hidden border border-primary/30 shadow-[0_0_30px_hsl(var(--primary)/0.25)] glow-box">
                 <img
                   src={aboutMeImg}
                   alt="Mohamed Assem - Portrait"

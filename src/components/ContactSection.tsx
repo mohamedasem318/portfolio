@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Send, User, MessageSquare, CheckCircle2 } from "lucide-react";
-import { SiGithub, SiLinkedin, SiBehance } from "react-icons/si";
+import { SiGithub, SiLinkedin, SiBehance, SiUpwork } from "react-icons/si";
 import mostaqlIcon from "@/assets/mostaql.png";
 import khamsatIcon from "@/assets/khamsat.svg";
 
@@ -202,6 +202,16 @@ const ContactSection = () => {
                                 >
                                     <SiBehance className="w-8 h-8 group-hover:scale-110 transition-transform" />
                                     <span className="text-xs font-semibold">Behance</span>
+                                </a>
+                                <a
+                                    href="https://www.upwork.com/freelancers/~01139ba7937a9c22cc"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex flex-col items-center justify-center gap-3 p-4 rounded-xl bg-secondary/50 hover:bg-primary/20 hover:text-primary transition-all group"
+                                    aria-label="Upwork"
+                                >
+                                    <SiUpwork className="w-8 h-8 group-hover:scale-110 transition-transform" />
+                                    <span className="text-xs font-semibold">Upwork</span>
                                 </a>
                                 <a
                                     href="https://mostaql.com/u/mohamedasem318"

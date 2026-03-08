@@ -8,83 +8,74 @@
   :root {
     --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
 
-    /* Light mode: Ocean Blue / Slate base */
-    --background: 210 40% 98%;
-    /* slate-50 */
-    --foreground: 222 47% 11%;
-    /* slate-900 */
+    /* OPTION B - Deep Forest & Amber (Light) */
+    --background: 60 20% 96%;
+    --foreground: 150 20% 12%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card: 60 15% 99%;
+    --card-foreground: 150 20% 12%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover: 60 15% 99%;
+    --popover-foreground: 150 20% 12%;
 
-    --primary: 201 96% 32%;
-    /* sky-700 (Ocean Blue) */
+    --primary: 38 88% 43%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 214 32% 91%;
-    /* slate-200 */
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 60 15% 88%;
+    --secondary-foreground: 150 20% 12%;
 
-    --muted: 210 40% 96%;
-    /* slate-100 */
-    --muted-foreground: 215 16% 47%;
-    /* slate-500 */
+    --muted: 60 12% 92%;
+    --muted-foreground: 150 8% 44%;
 
-    --accent: 201 96% 32%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 38 90% 50%;
+    --accent-foreground: 150 20% 8%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    /* slate-200 */
-    --input: 214 32% 91%;
-    /* slate-200 */
-    --ring: 201 96% 32%;
+    --border: 60 15% 84%;
+    --input: 60 15% 84%;
+    --ring: 38 90% 50%;
     --radius: 0.75rem;
 
-    --glass-bg: 210 40% 98% / 0.7;
-    /* matching slate-50 */
-    --glass-border: 214 32% 91% / 0.5;
-    --glow: 199 89% 48%;
-    /* sky-600 for brighter glow */
+    --glass-bg: 60 20% 96% / 0.75;
+    --glass-border: 60 10% 78% / 0.5;
+    --glow: 38 90% 55%;
   }
 
   .dark {
-    --background: 215 28% 10%;
-    --foreground: 210 20% 92%;
+    /* OPTION A/B Hybrid - Slate Charcoal & Amber (Dark) */
+    --background: 220 10% 9%;
+    --foreground: 220 10% 92%;
 
-    --card: 215 25% 14%;
-    --card-foreground: 210 20% 92%;
+    --card: 220 10% 12%;
+    --card-foreground: 220 10% 92%;
 
-    --popover: 215 25% 14%;
-    --popover-foreground: 210 20% 92%;
+    --popover: 220 10% 12%;
+    --popover-foreground: 220 10% 92%;
 
-    --primary: 187 80% 55%;
-    --primary-foreground: 215 28% 10%;
+    --primary: 38 95% 58%;
+    --primary-foreground: 220 10% 9%;
 
-    --secondary: 215 20% 18%;
-    --secondary-foreground: 210 20% 92%;
+    --secondary: 220 10% 15%;
+    --secondary-foreground: 220 10% 92%;
 
-    --muted: 215 20% 18%;
-    --muted-foreground: 215 15% 55%;
+    --muted: 220 10% 15%;
+    --muted-foreground: 220 10% 55%;
 
-    --accent: 187 80% 55%;
-    --accent-foreground: 215 28% 10%;
+    --accent: 38 95% 58%;
+    --accent-foreground: 220 10% 9%;
 
     --destructive: 0 62% 30%;
-    --destructive-foreground: 210 20% 92%;
+    --destructive-foreground: 220 10% 92%;
 
-    --border: 215 20% 22%;
-    --input: 215 20% 22%;
-    --ring: 187 80% 55%;
+    --border: 220 10% 20%;
+    --input: 220 10% 20%;
+    --ring: 38 95% 58%;
 
-    --glass-bg: 215 25% 14% / 0.6;
-    --glass-border: 215 20% 30% / 0.4;
-    --glow: 187 80% 55%;
+    --glass-bg: 220 10% 13% / 0.65;
+    --glass-border: 220 10% 28% / 0.4;
+    --glow: 38 95% 60%;
   }
 }
 
@@ -102,6 +93,31 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: var(--font-sans);
+  }
+
+  /* Custom Selection Color */
+  ::selection {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+    border-left: 1px solid hsl(var(--border));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.8);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 1);
   }
 }
 
