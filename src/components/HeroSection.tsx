@@ -2,8 +2,11 @@ import { motion } from "framer-motion";
 import { Download, ArrowDown } from "lucide-react";
 import avatarImg from "@/assets/avatar-resized.png";
 import cvPdf from "@/assets/Mohamed Assem Adel CV.pdf";
+import { useHaptics } from "@/hooks/useHaptics";
 
 const HeroSection = () => {
+  const { vibrate } = useHaptics();
+
   return (
     <section className="min-h-screen flex items-center section-padding pt-24 border-b border-border">
       <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
@@ -27,6 +30,7 @@ const HeroSection = () => {
           <div className="flex flex-wrap gap-4">
             <a
               href="#contact"
+              onClick={() => vibrate(50)}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold shadow-[0_0_20px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)] hover:scale-105 transition-all"
             >
               Get in Touch
@@ -34,6 +38,7 @@ const HeroSection = () => {
             <a
               href={cvPdf}
               download="Mohamed_Assem_CV.pdf"
+              onClick={() => vibrate(50)}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/50 text-foreground font-semibold hover:bg-primary/10 transition-colors"
             >
               <Download size={18} />
@@ -41,6 +46,7 @@ const HeroSection = () => {
             </a>
             <a
               href="#projects"
+              onClick={() => vibrate(50)}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-transparent text-muted-foreground font-semibold hover:text-foreground transition-colors"
             >
               <ArrowDown size={18} />

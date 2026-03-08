@@ -4,8 +4,10 @@ import { Mail, Send, User, MessageSquare, CheckCircle2 } from "lucide-react";
 import { SiGithub, SiLinkedin, SiBehance, SiUpwork } from "react-icons/si";
 import mostaqlIcon from "@/assets/mostaql.png";
 import khamsatIcon from "@/assets/khamsat.svg";
+import { useHaptics } from "@/hooks/useHaptics";
 
 const ContactSection = () => {
+    const { vibrate } = useHaptics();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 
@@ -30,6 +32,7 @@ const ContactSection = () => {
             console.error("Form submission failed", error);
         } finally {
             setIsSubmitting(false);
+            vibrate(100); // Larger vibration for successful submission
         }
     };
 
@@ -75,7 +78,7 @@ const ContactSection = () => {
                                 <h3 className="text-2xl font-bold text-foreground mb-2">Message Sent!</h3>
                                 <p className="text-muted-foreground">Thank you for reaching out. I'll get back to you as soon as possible.</p>
                                 <button
-                                    onClick={() => setIsSuccess(false)}
+                                    onClick={() => { setIsSuccess(false); vibrate(50); }}
                                     className="mt-8 px-6 py-2 rounded-lg border border-border text-sm font-medium hover:bg-secondary transition-colors"
                                 >
                                     Send another message
@@ -133,6 +136,7 @@ const ContactSection = () => {
 
                                 <button
                                     type="submit"
+                                    onClick={() => vibrate(50)}
                                     disabled={isSubmitting}
                                     className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 hover:scale-[1.02] transition-all shadow-[0_0_20px_hsl(var(--primary)/0.3)] disabled:opacity-50 disabled:hover:scale-100"
                                 >
@@ -164,6 +168,7 @@ const ContactSection = () => {
                             <p className="text-muted-foreground mb-6">Prefer sending an email directly? No problem.</p>
                             <a
                                 href="mailto:mohamedasem318@gmail.com"
+                                onClick={() => vibrate(50)}
                                 className="inline-flex items-center justify-center w-full gap-2 px-6 py-3 rounded-lg border border-primary/50 text-foreground font-semibold hover:bg-primary/10 transition-colors"
                             >
                                 mohamedasem318@gmail.com
@@ -177,6 +182,7 @@ const ContactSection = () => {
                                     href="https://www.linkedin.com/in/mohamedasem318/"
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    onClick={() => vibrate(50)}
                                     className="flex flex-col items-center justify-center gap-3 p-4 rounded-xl bg-secondary/50 hover:bg-primary/20 hover:text-primary transition-all group"
                                     aria-label="LinkedIn"
                                 >
@@ -187,6 +193,7 @@ const ContactSection = () => {
                                     href="https://github.com/mohamedasem318"
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    onClick={() => vibrate(50)}
                                     className="flex flex-col items-center justify-center gap-3 p-4 rounded-xl bg-secondary/50 hover:bg-primary/20 hover:text-primary transition-all group"
                                     aria-label="GitHub"
                                 >
@@ -197,6 +204,7 @@ const ContactSection = () => {
                                     href="https://www.behance.net/mohamedasem318"
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    onClick={() => vibrate(50)}
                                     className="flex flex-col items-center justify-center gap-3 p-4 rounded-xl bg-secondary/50 hover:bg-primary/20 hover:text-primary transition-all group"
                                     aria-label="Behance"
                                 >
@@ -207,6 +215,7 @@ const ContactSection = () => {
                                     href="https://www.upwork.com/freelancers/~01139ba7937a9c22cc"
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    onClick={() => vibrate(50)}
                                     className="flex flex-col items-center justify-center gap-3 p-4 rounded-xl bg-secondary/50 hover:bg-primary/20 hover:text-primary transition-all group"
                                     aria-label="Upwork"
                                 >
@@ -217,6 +226,7 @@ const ContactSection = () => {
                                     href="https://mostaql.com/u/mohamedasem318"
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    onClick={() => vibrate(50)}
                                     className="flex flex-col items-center justify-center gap-3 p-4 rounded-xl bg-secondary/50 hover:bg-primary/20 hover:text-primary transition-all group"
                                     aria-label="Mostaql"
                                 >
@@ -239,6 +249,7 @@ const ContactSection = () => {
                                     href="https://khamsat.com/user/mohamedasem318"
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    onClick={() => vibrate(50)}
                                     className="flex flex-col items-center justify-center gap-3 p-4 rounded-xl bg-secondary/50 hover:bg-primary/20 hover:text-primary transition-all group"
                                     aria-label="Khamsat"
                                 >

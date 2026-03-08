@@ -53,7 +53,7 @@ const Navbar = ({ isDark, onToggleTheme }: NavbarProps) => {
   // Trigger haptic feedback when scrolling into a new section
   useEffect(() => {
     if (activeSection) {
-      vibrate(30); // Very subtle tick
+      vibrate(50); // More noticeable vibration on scroll
     }
   }, [activeSection, vibrate]);
 
@@ -111,6 +111,7 @@ const Navbar = ({ isDark, onToggleTheme }: NavbarProps) => {
             <a
               key={link.href}
               href={link.href}
+              onClick={() => vibrate(50)}
               className={`text-sm font-medium transition-colors ${activeSection === link.href
                 ? "text-primary font-bold"
                 : "text-muted-foreground hover:text-primary"
@@ -120,7 +121,7 @@ const Navbar = ({ isDark, onToggleTheme }: NavbarProps) => {
             </a>
           ))}
           <button
-            onClick={onToggleTheme}
+            onClick={() => { onToggleTheme(); vibrate(50); }}
             className="p-2 rounded-lg hover:bg-secondary transition-colors"
             aria-label="Toggle theme"
           >
@@ -140,14 +141,14 @@ const Navbar = ({ isDark, onToggleTheme }: NavbarProps) => {
             </button>
           )}
           <button
-            onClick={onToggleTheme}
+            onClick={() => { onToggleTheme(); vibrate(50); }}
             className="p-2 rounded-lg hover:bg-secondary transition-colors"
             aria-label="Toggle theme"
           >
             {isDark ? <Sun size={18} /> : <Moon size={18} />}
           </button>
           <button
-            onClick={() => setMobileOpen(!mobileOpen)}
+            onClick={() => { setMobileOpen(!mobileOpen); vibrate(50); }}
             className="p-2 rounded-lg hover:bg-secondary transition-colors"
             aria-label="Toggle menu"
           >
@@ -170,7 +171,7 @@ const Navbar = ({ isDark, onToggleTheme }: NavbarProps) => {
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={(e) => handleMobileNavClick(e, link.href)}
+                  onClick={(e) => { handleMobileNavClick(e, link.href); vibrate(50); }}
                   className={`text-sm font-medium transition-colors py-2 ${activeSection === link.href
                     ? "text-primary font-bold bg-primary/10 rounded-md px-3 border border-primary/20"
                     : "text-muted-foreground hover:text-primary px-3"

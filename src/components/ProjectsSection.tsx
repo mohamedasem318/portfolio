@@ -14,6 +14,7 @@ import {
 } from "react-icons/si";
 import { PiMicrosoftPowerpointLogo } from "react-icons/pi";
 import { BrainCircuit, Calculator } from "lucide-react";
+import { useHaptics } from "@/hooks/useHaptics";
 
 // Cover images
 import gigacartCover from "@/assets/gigacart-cover.png";
@@ -155,6 +156,8 @@ interface LightboxProps {
 }
 
 const Lightbox = ({ project, onClose }: LightboxProps) => {
+  const { vibrate } = useHaptics();
+
   // Close on Escape key
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -190,7 +193,7 @@ const Lightbox = ({ project, onClose }: LightboxProps) => {
         >
           {/* Close button */}
           <button
-            onClick={onClose}
+            onClick={() => { onClose(); vibrate(50); }}
             className="absolute top-4 right-4 z-10 p-2 rounded-full bg-background/70 backdrop-blur-sm border border-border text-muted-foreground hover:text-foreground hover:bg-background transition-colors"
           >
             <X size={18} />
@@ -248,6 +251,7 @@ const filterStyles: Record<FilterOption, string> = {
 const ProjectsSection = () => {
   const [lightboxProject, setLightboxProject] = useState<Project | null>(null);
   const [activeFilter, setActiveFilter] = useState<FilterOption>("All");
+  const { vibrate } = useHaptics();
 
   const filtered = activeFilter === "All"
     ? projects
@@ -289,7 +293,7 @@ const ProjectsSection = () => {
               return (
                 <button
                   key={f}
-                  onClick={() => setActiveFilter(f)}
+                  onClick={() => { setActiveFilter(f); vibrate(50); }}
                   className={`px-5 py-2 rounded-full text-sm font-semibold border transition-all duration-200 ${isActive
                     ? filterStyles[f]
                     : "bg-transparent text-muted-foreground border-border hover:text-foreground hover:border-foreground/40"
@@ -340,7 +344,7 @@ const ProjectsSection = () => {
                           {isPresentation ? (
                             // Presentation → open lightbox
                             <button
-                              onClick={() => setLightboxProject(project)}
+                              onClick={() => { setLightboxProject(project); vibrate(50); }}
                               className="flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary/90 transition-colors shadow-lg cursor-pointer"
                             >
                               <ZoomIn size={16} />
@@ -354,6 +358,7 @@ const ProjectsSection = () => {
                                   href={project.liveUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
+                                  onClick={() => vibrate(50)}
                                   className="flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary/90 transition-colors shadow-lg"
                                 >
                                   <ExternalLink size={16} />
@@ -365,6 +370,7 @@ const ProjectsSection = () => {
                                   href={project.repoUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
+                                  onClick={() => vibrate(50)}
                                   className="flex items-center gap-2 bg-foreground text-background px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-foreground/90 transition-colors shadow-lg"
                                 >
                                   <SiGithub size={16} />
@@ -376,6 +382,7 @@ const ProjectsSection = () => {
                                   href={project.behanceUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
+                                  onClick={() => vibrate(50)}
                                   className="flex items-center gap-2 bg-background/80 text-foreground px-5 py-2.5 rounded-full text-sm font-semibold border border-border hover:bg-background transition-colors shadow-lg"
                                 >
                                   <SiBehance size={16} />
