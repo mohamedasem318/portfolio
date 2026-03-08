@@ -1,4 +1,7 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
+
+// Global flag so interaction unlocks haptics for ALL components instantly
+let globalHasInteracted = false;
 
 export const useHaptics = () => {
     // Check if the device actually supports the vibration API
@@ -13,27 +16,27 @@ export const useHaptics = () => {
         return true;
     });
 
-    // Browsers block vibration until user interacts with the page
-    const hasInteracted = useRef(false);
-
     useEffect(() => {
-        if (!isSupported) return;
+        if (!isSupported || globalHasInteracted) return;
 
         const unlock = () => {
-            if (hasInteracted.current) return;
+            if (globalHasInteracted) return;
             // Prime the hardware API during a direct user gesture
             try { navigator.vibrate(1); } catch (e) { /* ignore */ }
-            hasInteracted.current = true;
-            window.removeEventListener("click", unlock);
-            window.removeEventListener("touchend", unlock);
+            globalHasInteracted = true;
+            window.removeEventListener("pointerdown", unlock);
+            window.removeEventListener("touchstart", unlock);
+            window.removeEventListener("keydown", unlock);
         };
 
-        window.addEventListener("click", unlock, { once: true });
-        window.addEventListener("touchend", unlock, { once: true });
+        window.addEventListener("pointerdown", unlock, { once: true });
+        window.addEventListener("touchstart", unlock, { once: true });
+        window.addEventListener("keydown", unlock, { once: true });
 
         return () => {
-            window.removeEventListener("click", unlock);
-            window.removeEventListener("touchend", unlock);
+            window.removeEventListener("pointerdown", unlock);
+            window.removeEventListener("touchstart", unlock);
+            window.removeEventListener("keydown", unlock);
         };
     }, [isSupported]);
 
@@ -45,7 +48,7 @@ export const useHaptics = () => {
     // The actual vibration trigger
     const vibrate = useCallback(
         (pattern: number | number[]) => {
-            if (!isSupported || !hapticsEnabled || !hasInteracted.current) return;
+            if (!isSupported || !hapticsEnabled || !globalHasInteracted) return;
             try {
                 navigator.vibrate(pattern);
             } catch (e) {
