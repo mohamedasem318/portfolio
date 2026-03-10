@@ -93,13 +93,13 @@ const AboutSection = () => {
 
             <motion.div variants={fadeUp} className="text-muted-foreground space-y-4 text-lg leading-relaxed">
               <p>
-                I am Mohamed Assem, a multifaceted technologist thriving at the intersection of analytical engineering and digital design. My journey began in Biomedical Engineering at Helwan University, where I developed a deep appreciation for complex systems and computational logic.
+                I am Mohamed Assem, a multidisciplinary technologist working at the intersection of engineering and design. My journey actually started in customer service, working both billing and retention for major US telecoms. Those short but intense stints taught me something crucial about how to navigate user frustration and the importance of building truly frictionless experiences.
               </p>
               <p>
-                Currently advancing my expertise in the Cybersecurity track under the Digital Egypt Pioneers Initiative (DEPI), I bring a security-first mindset to every project.
+                My academic backbone is in Biomedical Engineering. Through internships at Siemens Healthineers, Dar Al Fouad Hospital, and the National Academy of Information Technology for Persons with Disabilities (NAID), I gained a sharp appreciation for complex systems and computational logic. Concurrently, my cybersecurity training under the Digital Egypt Pioneers Initiative (DEPI) ensures I build with a security-first mindset.
               </p>
               <p>
-                Whether I am engineering secure backend architectures, building full-stack platforms, or designing pixel-perfect user interfaces, my goal is to solve hard problems and deliver flawless digital experiences.
+                Today, as a Creative Technologist, I don't build software the traditional way. I leverage advanced prompt engineering and modern AI tools to rapidly architect, prototype, and ship secure platforms. Beyond logic, I am highly visual. I build vibrant, custom presentation decks and graphic assets by deconstructing templates, sourcing fresh vectors, and injecting bold energy to make data engaging.
               </p>
             </motion.div>
           </motion.div>
