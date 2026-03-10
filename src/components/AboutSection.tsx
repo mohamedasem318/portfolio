@@ -99,7 +99,7 @@ const AboutSection = () => {
                 My academic foundation is in Biomedical Engineering. Through internships at Siemens Healthineers, Dar Al Fouad Hospital, and NAID, I developed a sharp appreciation for complex systems. Concurrently, my cybersecurity training (DEPI) ensures I build with a security-first mindset.
               </p>
               <p>
-                Today, as a Creative Technologist, I leverage advanced prompt engineering and modern AI tools to rapidly architect and ship secure platforms. Beyond logic, I am highly visual—crafting vibrant, custom presentation decks by deconstructing templates and injecting bold energy to make data engaging.
+                Today, as a Creative Technologist, I leverage advanced prompt engineering and modern AI tools to rapidly architect and ship secure platforms. Beyond logic, I am highly visual. I craft vibrant, custom presentation decks by deconstructing templates and injecting bold energy to make data engaging.
               </p>
             </motion.div>
           </motion.div>
