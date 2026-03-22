@@ -15,6 +15,10 @@ import {
 import { PiMicrosoftPowerpointLogo } from "react-icons/pi";
 import { BrainCircuit, Calculator } from "lucide-react";
 import { useHaptics } from "@/hooks/useHaptics";
+import { CustomIcon } from "./ui/CustomIcon";
+import matlabAsset from "@/assets/matlab.png";
+
+const MatlabIcon = (props: any) => <CustomIcon src={matlabAsset} {...props} />;
 
 // Cover images
 import gigacartCover from "@/assets/gigacart-cover.png";
@@ -24,6 +28,9 @@ import presentationAlzheimers from "@/assets/presentation-alzheimersstagedetecti
 import presentationPelvis from "@/assets/presentation-pelvisbonedynamicanalysis.png";
 import presentationStress from "@/assets/presentation-workstressdetection.png";
 import presentationXray from "@/assets/presentation-xrayimagecontrast.png";
+import presentationPressmap from "@/assets/presentation-pressmaprehab.png";
+import presentationNeuroblate from "@/assets/presentation-neuroblate.png";
+import presentationHlm from "@/assets/presentation-hlm.png";
 
 interface TechTag {
   label: string;
@@ -91,7 +98,7 @@ const projects: Project[] = [
       "https://www.behance.net/gallery/244679927/Mohrs-Circle-Stresses-Calculator-Engineering-UIUX",
     repoUrl: "https://github.com/mohamedasem318/stresses-calculator-itsLu",
     tags: [
-      { label: "MATLAB", Icon: Calculator },
+      { label: "MATLAB", Icon: MatlabIcon },
       { label: "Engineering UI", Icon: Calculator },
     ],
   },
@@ -135,6 +142,45 @@ const projects: Project[] = [
     imagePosition: "object-center",
   },
   {
+    title: "Heart-Lung Machine",
+    category: "Presentation",
+    description:
+      "A research presentation on the Heart-Lung Machine (HLM), the device that takes over cardiac and pulmonary function during open-heart surgery. Covers the machine's overview, components and working principle, engineering design considerations, common malfunctions, and future trends in cardiopulmonary bypass technology.",
+    cover: presentationHlm,
+    tags: [
+      { label: "PowerPoint", Icon: PiMicrosoftPowerpointLogo },
+      { label: "Photoshop", Icon: SiAdobephotoshop },
+      { label: "Illustrator", Icon: SiAdobeillustrator },
+    ],
+    imagePosition: "object-center",
+  },
+  {
+    title: "NeuroBlate System",
+    category: "Presentation",
+    description:
+      "An in-depth research presentation on the NeuroBlate System, the only FDA-approved minimally invasive robotic laser thermotherapy for MRI-guided brain lesion ablation. Covers the full system across 10 sections including LITT technology, applications, workflow, components, safety precautions, common problems, PM, CM, and a market study.",
+    cover: presentationNeuroblate,
+    tags: [
+      { label: "PowerPoint", Icon: PiMicrosoftPowerpointLogo },
+      { label: "Photoshop", Icon: SiAdobephotoshop },
+      { label: "Illustrator", Icon: SiAdobeillustrator },
+    ],
+    imagePosition: "object-center",
+  },
+  {
+    title: "Pressure Mapping in Rehabilitation",
+    category: "Presentation",
+    description:
+      "A research presentation on Structure-Gradient Fiber Mats (SGFM) as a flexible pressure-sensing solution for autonomous rehabilitation. Addresses the limitations of traditional rehab (professional dependency, high costs, and poor accessibility) by proposing a wearable, soft-material sensor system enabling independent on-bed exercise guidance.",
+    cover: presentationPressmap,
+    tags: [
+      { label: "PowerPoint", Icon: PiMicrosoftPowerpointLogo },
+      { label: "Photoshop", Icon: SiAdobephotoshop },
+      { label: "Illustrator", Icon: SiAdobeillustrator },
+    ],
+    imagePosition: "object-center",
+  },
+  {
     title: "X-Ray Image Contrast",
     category: "Presentation",
     description:
@@ -168,8 +214,7 @@ const Lightbox = ({ project, onClose }: LightboxProps) => {
   }, [onClose]);
 
   return (
-    <AnimatePresence>
-      <motion.div
+    <motion.div
         key="lightbox-backdrop"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -179,7 +224,13 @@ const Lightbox = ({ project, onClose }: LightboxProps) => {
         onClick={onClose}
       >
         {/* Frosted backdrop */}
-        <div className="absolute inset-0 bg-background/80 backdrop-blur-xl" />
+        <motion.div
+          initial={{ backdropFilter: "blur(0px)", backgroundColor: "hsl(var(--background) / 0)" }}
+          animate={{ backdropFilter: "blur(20px)", backgroundColor: "hsl(var(--background) / 0.8)" }}
+          exit={{ backdropFilter: "blur(0px)", backgroundColor: "hsl(var(--background) / 0)" }}
+          transition={{ duration: 0.25 }}
+          className="absolute inset-0"
+        />
 
         {/* Modal panel */}
         <motion.div
@@ -194,7 +245,7 @@ const Lightbox = ({ project, onClose }: LightboxProps) => {
           {/* Close button */}
           <button
             onClick={() => { onClose(); vibrate(50); }}
-            className="absolute top-4 right-4 z-10 p-2 rounded-full bg-background/70 backdrop-blur-sm border border-border text-muted-foreground hover:text-foreground hover:bg-background transition-colors"
+            className="absolute top-4 right-4 z-10 p-2 rounded-full bg-secondary/90 backdrop-blur-sm border border-border text-foreground hover:bg-secondary transition-colors"
           >
             <X size={18} />
           </button>
@@ -232,7 +283,6 @@ const Lightbox = ({ project, onClose }: LightboxProps) => {
           </div>
         </motion.div>
       </motion.div>
-    </AnimatePresence>
   );
 };
 
@@ -259,12 +309,14 @@ const ProjectsSection = () => {
 
   return (
     <>
-      {lightboxProject && (
-        <Lightbox
-          project={lightboxProject}
-          onClose={() => setLightboxProject(null)}
-        />
-      )}
+      <AnimatePresence>
+        {lightboxProject && (
+          <Lightbox
+            project={lightboxProject}
+            onClose={() => setLightboxProject(null)}
+          />
+        )}
+      </AnimatePresence>
 
       <section
         id="projects"
@@ -323,7 +375,7 @@ const ProjectsSection = () => {
                     className="glass rounded-xl overflow-hidden glow-box group transition-all duration-300 flex flex-col"
                   >
                     {/* Cover Image */}
-                    <div className="h-52 lg:h-60 bg-secondary overflow-hidden relative">
+                    <div className={`${project.category === "Presentation" ? "h-56 lg:h-72" : "h-52 lg:h-60"} bg-secondary overflow-hidden relative`}>
                       {project.cover ? (
                         <img
                           src={project.cover}
