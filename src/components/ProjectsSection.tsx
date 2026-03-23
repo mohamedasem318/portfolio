@@ -362,18 +362,18 @@ const ProjectCard = ({ project, idx, onLightbox }: ProjectCardProps) => {
         {/* Cover Image */}
         <div className="h-56 lg:h-72 bg-secondary overflow-hidden relative">
           {project.cover ? (
-            <AnimatePresence mode="sync">
-              <motion.img
-                key={images[activeIndex]}
-                src={images[activeIndex]}
+            images.map((src, i) => (
+              <img
+                key={src}
+                src={src}
                 alt={project.title}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.7, ease: "easeInOut" }}
                 className={`absolute inset-0 w-full h-full object-cover ${project.imagePosition || "object-center"} group-hover:scale-105 transition-transform duration-500`}
+                style={{
+                  opacity: i === activeIndex ? 1 : 0,
+                  transition: "opacity 700ms ease-in-out",
+                }}
               />
-            </AnimatePresence>
+            ))
           ) : (
             <div className="w-full h-full flex items-center justify-center">
               <span className="text-5xl font-bold text-primary/20 group-hover:text-primary/40 transition-colors duration-300">
