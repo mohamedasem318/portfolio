@@ -11,6 +11,8 @@ import {
   SiBehance,
   SiAdobephotoshop,
   SiAdobeillustrator,
+  SiFastapi,
+  SiHuggingface,
 } from "react-icons/si";
 import { PiMicrosoftPowerpointLogo } from "react-icons/pi";
 import { BrainCircuit, Calculator } from "lucide-react";
@@ -31,6 +33,7 @@ import presentationXray from "@/assets/presentation-xrayimagecontrast.png";
 import presentationPressmap from "@/assets/presentation-pressmaprehab.png";
 import presentationNeuroblate from "@/assets/presentation-neuroblate.png";
 import presentationHlm from "@/assets/presentation-hlm.png";
+import vibecheckCover from "@/assets/vibecheck-cover.png";
 
 interface TechTag {
   label: string;
@@ -59,6 +62,22 @@ const categoryStyles: Record<ProjectCategory, string> = {
 
 const projects: Project[] = [
   {
+    title: "VibeCheck",
+    category: "Web App",
+    description: "An NLP-powered mental health sentiment classifier built for students. Users type how they're feeling and the app detects one of 7 emotional states — anxiety, depression, stress, bipolar, personality disorder, suicidal ideation, or normal — with a confidence score. Features two swappable AI models, a reactive UI that physically responds to each classification (e.g. the input shakes on anxiety, a rainbow gradient fires on an easter egg), dark/light mode, and a crisis resource panel for high-risk results.",
+    cover: vibecheckCover,
+    behanceUrl: "https://www.behance.net/gallery/246277609/VibeCheck",
+    liveUrl: "https://vibecheck-eosin.vercel.app/",
+    tags: [
+      { label: "React", Icon: SiReact },
+      { label: "Python", Icon: SiPython },
+      { label: "FastAPI", Icon: SiFastapi },
+      { label: "HuggingFace", Icon: SiHuggingface },
+      { label: "Deep Learning", Icon: BrainCircuit },
+    ],
+    imagePosition: "object-top",
+  },
+  {
     title: "GigaCart",
     category: "Web App",
     description: "Shipped in under 48 hours and iterated to v1.6 in 3 days, GigaCart solves a real local problem: Egypt's internet limitations make sharing media files painful. The platform integrates TMDB/IGDB APIs for automated metadata and features a dynamic request cart that coordinates in-person physical drive exchanges, eliminating screenshot chat clutter entirely.",
@@ -80,7 +99,7 @@ const projects: Project[] = [
     cover: cerebroscanCover,
     behanceUrl:
       "https://www.behance.net/gallery/244723563/CerebroScan-AI-Powered-Alzheimers-Detection-Web-App",
-    liveUrl: "https://cerebroscan-app.hf.space/",
+    liveUrl: "https://cerebroscan.netlify.app/",
     tags: [
       { label: "React", Icon: SiReact },
       { label: "Python", Icon: SiPython },
