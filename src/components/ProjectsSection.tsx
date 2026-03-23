@@ -34,6 +34,22 @@ import presentationPressmap from "@/assets/presentation-pressmaprehab.png";
 import presentationNeuroblate from "@/assets/presentation-neuroblate.png";
 import presentationHlm from "@/assets/presentation-hlm.png";
 import vibecheckCover from "@/assets/vibecheck-cover.png";
+// App screenshots
+import vibecheckAnxiety from "@/assets/vibecheck-anxiety.png";
+import vibecheckDepression from "@/assets/vibecheck-depression.png";
+import vibecheckStress from "@/assets/vibecheck-stress.png";
+import vibecheckPhone from "@/assets/vibecheck-phone.png";
+import gigacartAddmedia from "@/assets/gigacart-addmedia.png";
+import gigacartDashboardlight from "@/assets/gigacart-dashboardlight.png";
+import gigacartRequests from "@/assets/gigacart-requests.png";
+import gigacartPhone from "@/assets/gigacart-phone.png";
+import cerebroscanLight from "@/assets/cerebroscan-light.png";
+import cerebroscanResulthealthy from "@/assets/cerebroscan-resulthealthy.png";
+import cerebroscanResultunsure from "@/assets/cerebroscan-resultunsure.png";
+import cerebroscanIphone from "@/assets/cerebroscan-iphone.png";
+import matlabResults1 from "@/assets/matlabstresscalc-results1.png";
+import matlabResults2 from "@/assets/matlabstresscalc-results2.png";
+import matlabResults3 from "@/assets/matlabstresscalc-results3.png";
 
 interface TechTag {
   label: string;
@@ -47,6 +63,7 @@ interface Project {
   category: ProjectCategory;
   description: string;
   cover: string;
+  images?: string[];
   behanceUrl?: string;
   liveUrl?: string;
   repoUrl?: string;
@@ -66,6 +83,7 @@ const projects: Project[] = [
     category: "Web App",
     description: "An NLP-powered mental health sentiment classifier built for students. Users type how they're feeling and the app detects one of 7 emotional states — anxiety, depression, stress, bipolar, personality disorder, suicidal ideation, or normal — with a confidence score. Features two swappable AI models, a reactive UI that physically responds to each classification (e.g. the input shakes on anxiety, a rainbow gradient fires on an easter egg), dark/light mode, and a crisis resource panel for high-risk results.",
     cover: vibecheckCover,
+    images: [vibecheckCover, vibecheckAnxiety, vibecheckDepression, vibecheckStress, vibecheckPhone],
     behanceUrl: "https://www.behance.net/gallery/246277609/VibeCheck",
     liveUrl: "https://vibecheck-eosin.vercel.app/",
     tags: [
@@ -82,6 +100,7 @@ const projects: Project[] = [
     category: "Web App",
     description: "Shipped in under 48 hours and iterated to v1.6 in 3 days, GigaCart solves a real local problem: Egypt's internet limitations make sharing media files painful. The platform integrates TMDB/IGDB APIs for automated metadata and features a dynamic request cart that coordinates in-person physical drive exchanges, eliminating screenshot chat clutter entirely.",
     cover: gigacartCover,
+    images: [gigacartCover, gigacartAddmedia, gigacartDashboardlight, gigacartRequests, gigacartPhone],
     behanceUrl:
       "https://www.behance.net/gallery/244729837/GigaCart-P2P-Offline-Coordination-Platform",
     liveUrl: "https://gigacart-rho.vercel.app/",
@@ -97,6 +116,7 @@ const projects: Project[] = [
     category: "Web App",
     description: "Deployed overnight before the faculty presentation and well-received by the supervising TA, CerebroScan is an academic image processing tool that classifies Alzheimer's stages from MRI scans. We engineered and evaluated ResNet-50, ResNet-101, and EfficientNet-B2 architectures. All achieved 98% accuracy, with ResNet-101 delivering the most robust clinical results.",
     cover: cerebroscanCover,
+    images: [cerebroscanCover, cerebroscanLight, cerebroscanResulthealthy, cerebroscanResultunsure, cerebroscanIphone],
     behanceUrl:
       "https://www.behance.net/gallery/244723563/CerebroScan-AI-Powered-Alzheimers-Detection-Web-App",
     liveUrl: "https://cerebroscan.netlify.app/",
@@ -113,6 +133,7 @@ const projects: Project[] = [
     category: "Desktop App",
     description: "Built when LLMs weren't yet reliable for coding help. Figured it out through raw research and YouTube deep-dives. This tool automates complex stress analysis calculations for a university course, computing principal and shear stresses and dynamically plotting Mohr's Circle to strict academic guidelines. One of the best submissions that cycle.",
     cover: matlabCover,
+    images: [matlabCover, matlabResults1, matlabResults2, matlabResults3],
     behanceUrl:
       "https://www.behance.net/gallery/244679927/Mohrs-Circle-Stresses-Calculator-Engineering-UIUX",
     repoUrl: "https://github.com/mohamedasem318/stresses-calculator-itsLu",
@@ -305,6 +326,149 @@ const Lightbox = ({ project, onClose }: LightboxProps) => {
   );
 };
 
+// ── Project Card ──────────────────────────────────────────────────────────────
+interface ProjectCardProps {
+  project: Project;
+  idx: number;
+  onLightbox: (project: Project) => void;
+}
+
+const ProjectCard = ({ project, idx, onLightbox }: ProjectCardProps) => {
+  const { vibrate } = useHaptics();
+  const isPresentation = project.category === "Presentation";
+  const images = project.images ?? [project.cover];
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (isHovered || images.length <= 1) return;
+    const id = setInterval(() => setActiveIndex((i) => (i + 1) % images.length), 2500);
+    return () => clearInterval(id);
+  }, [isHovered, images.length]);
+
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.5, ease: "easeOut", delay: idx * 0.1 }}
+      className="group flex"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="glass rounded-xl overflow-hidden glow-box flex flex-col w-full hover:-translate-y-1.5 transition-transform duration-200">
+        {/* Cover Image */}
+        <div className="h-56 lg:h-72 bg-secondary overflow-hidden relative">
+          {project.cover ? (
+            <AnimatePresence mode="sync">
+              <motion.img
+                key={images[activeIndex]}
+                src={images[activeIndex]}
+                alt={project.title}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.7, ease: "easeInOut" }}
+                className={`absolute inset-0 w-full h-full object-cover ${project.imagePosition || "object-center"} group-hover:scale-105 transition-transform duration-500`}
+              />
+            </AnimatePresence>
+          ) : (
+            <div className="w-full h-full flex items-center justify-center">
+              <span className="text-5xl font-bold text-primary/20 group-hover:text-primary/40 transition-colors duration-300">
+                {project.title.charAt(0)}
+              </span>
+            </div>
+          )}
+
+          {/* Hover Overlay */}
+          <div className="absolute inset-0 bg-background/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div className="flex flex-col gap-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+              {isPresentation ? (
+                <button
+                  onClick={() => { onLightbox(project); vibrate(50); }}
+                  className="flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary/90 transition-colors shadow-lg cursor-pointer"
+                >
+                  <ZoomIn size={16} />
+                  View Full Slide
+                </button>
+              ) : (
+                <>
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => vibrate(50)}
+                      className="flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary/90 transition-colors shadow-lg"
+                    >
+                      <ExternalLink size={16} />
+                      View Live Site
+                    </a>
+                  )}
+                  {project.repoUrl && (
+                    <a
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => vibrate(50)}
+                      className="flex items-center gap-2 bg-foreground text-background px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-foreground/90 transition-colors shadow-lg"
+                    >
+                      <SiGithub size={16} />
+                      View Source Code
+                    </a>
+                  )}
+                  {project.behanceUrl && (
+                    <a
+                      href={project.behanceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => vibrate(50)}
+                      className="flex items-center gap-2 bg-background/80 text-foreground px-5 py-2.5 rounded-full text-sm font-semibold border border-border hover:bg-background transition-colors shadow-lg"
+                    >
+                      <SiBehance size={16} />
+                      View Case Study
+                    </a>
+                  )}
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Card Body */}
+        <div className="p-6 lg:p-8 flex flex-col flex-1">
+          <div className="flex items-center gap-2.5 mb-3 flex-wrap">
+            <h3 className="font-bold text-lg lg:text-xl">{project.title}</h3>
+            <span
+              className={`shrink-0 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border ${categoryStyles[project.category]}`}
+            >
+              {project.category}
+            </span>
+          </div>
+
+          <p className="text-sm lg:text-base text-muted-foreground leading-relaxed flex-1 mb-6">
+            {project.description}
+          </p>
+
+          <div className="flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <span
+                key={tag.label}
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20"
+              >
+                <tag.Icon size={12} />
+                {tag.label}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 // ── Section ───────────────────────────────────────────────────────────────────
 type FilterOption = "All" | ProjectCategory;
 
@@ -378,129 +542,14 @@ const ProjectsSection = () => {
 
           <div className="grid sm:grid-cols-2 xl:grid-cols-2 gap-8 lg:gap-10">
             <AnimatePresence mode="popLayout">
-              {filtered.map((project, idx) => {
-                const isPresentation = project.category === "Presentation";
-
-                return (
-                  <motion.div
-                    key={project.title}
-                    layout
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.5, ease: "easeOut", delay: idx * 0.1 }}
-                    className="group flex"
-                  >
-                    <div className="glass rounded-xl overflow-hidden glow-box flex flex-col w-full hover:-translate-y-1.5 transition-transform duration-200">
-                    {/* Cover Image */}
-                    <div className="h-56 lg:h-72 bg-secondary overflow-hidden relative">
-                      {project.cover ? (
-                        <img
-                          src={project.cover}
-                          alt={project.title}
-                          className={`w-full h-full object-cover ${project.imagePosition || "object-center"} group-hover:scale-105 transition-transform duration-500`}
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                          <span className="text-5xl font-bold text-primary/20 group-hover:text-primary/40 transition-colors duration-300">
-                            {project.title.charAt(0)}
-                          </span>
-                        </div>
-                      )}
-
-                      {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-background/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <div className="flex flex-col gap-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                          {isPresentation ? (
-                            // Presentation → open lightbox
-                            <button
-                              onClick={() => { setLightboxProject(project); vibrate(50); }}
-                              className="flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary/90 transition-colors shadow-lg cursor-pointer"
-                            >
-                              <ZoomIn size={16} />
-                              View Full Slide
-                            </button>
-                          ) : (
-                            // Web / Desktop apps → external links
-                            <>
-                              {project.liveUrl && (
-                                <a
-                                  href={project.liveUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  onClick={() => vibrate(50)}
-                                  className="flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-primary/90 transition-colors shadow-lg"
-                                >
-                                  <ExternalLink size={16} />
-                                  View Live Site
-                                </a>
-                              )}
-                              {project.repoUrl && (
-                                <a
-                                  href={project.repoUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  onClick={() => vibrate(50)}
-                                  className="flex items-center gap-2 bg-foreground text-background px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-foreground/90 transition-colors shadow-lg"
-                                >
-                                  <SiGithub size={16} />
-                                  View Source Code
-                                </a>
-                              )}
-                              {project.behanceUrl && (
-                                <a
-                                  href={project.behanceUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  onClick={() => vibrate(50)}
-                                  className="flex items-center gap-2 bg-background/80 text-foreground px-5 py-2.5 rounded-full text-sm font-semibold border border-border hover:bg-background transition-colors shadow-lg"
-                                >
-                                  <SiBehance size={16} />
-                                  View Case Study
-                                </a>
-                              )}
-                            </>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Card Body */}
-                    <div className="p-6 lg:p-8 flex flex-col flex-1">
-                      {/* Title + Category Badge */}
-                      <div className="flex items-center gap-2.5 mb-3 flex-wrap">
-                        <h3 className="font-bold text-lg lg:text-xl">
-                          {project.title}
-                        </h3>
-                        <span
-                          className={`shrink-0 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border ${categoryStyles[project.category]}`}
-                        >
-                          {project.category}
-                        </span>
-                      </div>
-
-                      <p className="text-sm lg:text-base text-muted-foreground leading-relaxed flex-1 mb-6">
-                        {project.description}
-                      </p>
-
-                      {/* Tech Stack Metadata Labels */}
-                      <div className="flex flex-wrap gap-2">
-                        {project.tags.map((tag) => (
-                          <span
-                            key={tag.label}
-                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20"
-                          >
-                            <tag.Icon size={12} />
-                            {tag.label}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
+              {filtered.map((project, idx) => (
+                <ProjectCard
+                  key={project.title}
+                  project={project}
+                  idx={idx}
+                  onLightbox={setLightboxProject}
+                />
+              ))}
             </AnimatePresence>
           </div>
         </div>

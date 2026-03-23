@@ -1,6 +1,6 @@
 # Mohamed's Portfolio — Developer Documentation
 
-> Generated: 2026-02-25 | Built originally with [Lovable](https://lovable.dev), maintained manually.
+> Updated: 2026-03-24 | Built originally with [Lovable](https://lovable.dev), maintained manually.
 
 ---
 
@@ -66,27 +66,31 @@ creative-tech-studio-main/
 │   └── robots.txt
 │
 ├── src/
-│   ├── assets/
-│   │   └── avatar.png           # Profile photo used in HeroSection
-│
-├── src/
-│   ├── assets/
-│   │   └── avatar.png           # Profile photo used in HeroSection
+│   ├── assets/                  # Images, icons, CV PDF, and project screenshots
+│   │   ├── avatar.png           # Profile photo used in HeroSection
+│   │   ├── aboutmeavatar.png    # Portrait used in AboutSection
+│   │   ├── *-cover.png          # Project cover images
+│   │   ├── vibecheck-*.png      # VibeCheck screenshots (slideshow)
+│   │   ├── gigacart-*.png       # GigaCart screenshots (slideshow)
+│   │   ├── cerebroscan-*.png    # CerebroScan screenshots (slideshow)
+│   │   ├── matlabstresscalc-*.png  # Mohr's Calculator screenshots (slideshow)
+│   │   ├── presentation-*.png   # Presentation slide covers
+│   │   └── Mohamed Assem Adel CV.pdf
 │   │
 │   ├── components/
 │   │   ├── Navbar.tsx           # Fixed top navigation bar
 │   │   ├── HeroSection.tsx      # Landing / top-of-page section
 │   │   ├── AboutSection.tsx     # Bio, education, achievements
 │   │   ├── SkillsSection.tsx    # Tech skills grouped by category
-│   │   ├── ProjectsSection.tsx  # Featured project cards
+│   │   ├── ProjectsSection.tsx  # Filter tabs + Cards (auto-cycling slideshow) + Lightbox
 │   │   ├── ServicesSection.tsx  # Offered services cards
-│   │   ├── TestimonialsSection.tsx  # Client reviews carousel (CURRENTLY COMMENTED OUT)
-│   │   ├── Footer.tsx           # Contact CTA + social links
-│   │   ├── NavLink.tsx          # (Unused helper — see improvement report)
-│   │   └── ui/                  # shadcn/ui components (49 files — do not modify manually)
+│   │   ├── CTASection.tsx       # Call to action with social links
+│   │   ├── Footer.tsx           # Copyright + links
+│   │   └── ui/                  # shadcn/ui components (do not modify manually)
 │   │
 │   ├── hooks/
 │   │   ├── useTheme.ts          # Dark/light mode toggle logic
+│   │   ├── useHaptics.ts        # Haptic/vibration feedback hook
 │   │   ├── use-mobile.tsx       # Detects mobile viewport
 │   │   └── use-toast.ts         # Toast notification hook
 │   │
@@ -203,19 +207,23 @@ Icons come from `lucide-react`. Browse available icons at [lucide.dev](https://l
 
 Grid of project cards. Each card shows a color-block image placeholder, title, description, and tech icons.
 
-**To update projects**, edit the `projects` array:
+**To update projects**, edit the `projects` array at the top of the file. Each app project supports an `images` array for the auto-cycling slideshow — the first entry is always the cover shown on load:
 ```ts
 const projects = [
   {
     title: "CerebroScan",
+    category: "Web App",
     description: "...",
-    icons: [Code, Database, BrainCircuit],
+    cover: cerebroscanCover,
+    images: [cerebroscanCover, cerebroscanLight, cerebroscanResulthealthy],
+    liveUrl: "https://...",
+    tags: [{ label: "React", Icon: SiReact }],
+    imagePosition: "object-top",
   },
-  // add more projects here
 ];
 ```
 
-> ⚠️ **Placeholder issue**: Project cards show only the first letter of the title as a placeholder image. Real project screenshots should replace these. See the Improvement Report.
+Presentation cards use a single `cover` image and open in a fullscreen **Lightbox** on click — the `images` array is not used for them.
 
 ---
 
@@ -238,16 +246,10 @@ const services = [
 
 ---
 
-### `TestimonialsSection.tsx`
-**Location:** `src/components/TestimonialsSection.tsx`
-**Status: 🔴 Commented out** — not rendered in `Index.tsx`
+### `CTASection.tsx`
+**Location:** `src/components/CTASection.tsx`
 
-A sliding carousel of client testimonials with star ratings.
-
-**To enable it:**
-1. Uncomment the import in `Index.tsx` (line 11)
-2. Uncomment `<TestimonialsSection />` (line 25)
-3. Replace the placeholder testimonial data (`testimonials` array) with real reviews
+Call-to-action section with social media links (GitHub, LinkedIn, Behance, Upwork, Mostaql, Khamsat) and an email button.
 
 ---
 
@@ -266,21 +268,16 @@ Contact CTA with email button + social media dock.
 
 ---
 
-### `NavLink.tsx`
-**Location:** `src/components/NavLink.tsx`
-**Status: ⚠️ Unused**
-
-A small helper component for nav links. Currently not used anywhere — `Navbar.tsx` renders links inline. Can be deleted or adopted to DRY up the navbar code.
-
----
-
 ## 6. Hooks
 
 ### `useTheme.ts`
 Manages dark/light mode by toggling the `dark` class on `<html>`.
 
 - Defaults to **dark mode** on first load.
-- Does **not persist** the user's preference to `localStorage` — refreshing the page always resets to dark.
+- Does not persist the user's preference to `localStorage` — refreshing resets to dark.
+
+### `useHaptics.ts`
+Exposes a `vibrate(ms)` function that triggers the Web Vibration API on supported devices. Used on interactive buttons throughout the portfolio for a tactile feel.
 
 ### `use-mobile.tsx`
 Returns `true` if the viewport width is less than 768px. Used for responsive logic.
@@ -357,7 +354,7 @@ All design tokens are CSS custom properties defined in `src/index.css`.
 # Install dependencies
 npm install
 
-# Start dev server (http://localhost:5173)
+# Start dev server (http://localhost:8080)
 npm run dev
 
 # Build for production

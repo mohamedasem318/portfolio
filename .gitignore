@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Generated reports & artifacts
+eslint-report*.json
+*.timestamp-*.mjs
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

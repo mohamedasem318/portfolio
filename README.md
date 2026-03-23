@@ -86,6 +86,7 @@ All section cards use a shared `glass` CSS class from `index.css`, providing con
 On large desktop viewports (`lg:`+), font sizes, padding, and card dimensions are explicitly constrained to prevent content from becoming bloated. Sections use `min-h-screen` to command the user's full attention.
 
 **3. Dynamic Projects Showcase**
+- App project cards (Web App, Desktop App) auto-cycle through multiple screenshots with a Framer Motion crossfade every 2.5 seconds — pausing on hover when the CTA overlay appears.
 - `imagePosition` per project controls `object-top` vs `object-center` cropping for web screenshots vs. desktop UIs.
 - Filter tabs use Framer Motion `AnimatePresence mode="popLayout"` for smooth staggered card reflows when switching category.
 - Presentation cards open a frosted-glass **Lightbox** modal on click instead of navigating externally.
@@ -105,10 +106,11 @@ src/
 ├── assets/                 # Images, icons, CV PDF, and project screenshots
 │   ├── avatar-resized.png
 │   ├── aboutmeavatar.png
-│   ├── gigacart-cover.png
-│   ├── cerebroscan-cover.png
-│   ├── matlabstresscalc-cover.png
-│   ├── presentation-*.png  # 4 presentation slide screenshots
+│   ├── vibecheck-*.png      # VibeCheck cover + slideshow screenshots
+│   ├── gigacart-*.png       # GigaCart cover + slideshow screenshots
+│   ├── cerebroscan-*.png    # CerebroScan cover + slideshow screenshots
+│   ├── matlabstresscalc-*.png  # Mohr's Calculator cover + slideshow screenshots
+│   ├── presentation-*.png   # 7 presentation slide covers
 │   └── Mohamed Assem Adel CV.pdf
 │
 ├── components/
@@ -116,7 +118,7 @@ src/
 │   ├── HeroSection.tsx      # Hero with Download CV → PDF download
 │   ├── AboutSection.tsx     # Bio + portrait (mobile: portrait first, then text)
 │   ├── SkillsSection.tsx    # Three-column categorized skill arsenal
-│   ├── ProjectsSection.tsx  # Filter tabs + Cards + Lightbox modal
+│   ├── ProjectsSection.tsx  # Filter tabs + Cards (auto-cycling slideshow) + Lightbox
 │   ├── ServicesSection.tsx  # Services offered
 │   ├── EducationSection.tsx # Academic timeline
 │   ├── CTASection.tsx       # Call to Action with social links
