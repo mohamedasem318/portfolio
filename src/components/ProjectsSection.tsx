@@ -61,7 +61,7 @@ const projects: Project[] = [
   {
     title: "GigaCart",
     category: "Web App",
-    description: "Born from Egypt's internet limitations, this platform solves local media sharing. It integrates TMDB/IGDB APIs for automated metadata and features a dynamic request cart that coordinates in-person physical drive exchanges. The result is a streamlined P2P network that entirely eliminates screenshot chat clutter.",
+    description: "Shipped in under 48 hours and iterated to v1.6 in 3 days, GigaCart solves a real local problem: Egypt's internet limitations make sharing media files painful. The platform integrates TMDB/IGDB APIs for automated metadata and features a dynamic request cart that coordinates in-person physical drive exchanges, eliminating screenshot chat clutter entirely.",
     cover: gigacartCover,
     behanceUrl:
       "https://www.behance.net/gallery/244729837/GigaCart-P2P-Offline-Coordination-Platform",
@@ -76,7 +76,7 @@ const projects: Project[] = [
   {
     title: "CerebroScan",
     category: "Web App",
-    description: "An academic image processing tool designed to classify Alzheimer's stages from MRI scans, featuring an 'unsure' fallback for low-confidence predictions. We engineered and evaluated ResNet-50, ResNet-101, and EfficientNet-B2 architectures. All models achieved 98% accuracy, with ResNet-101 delivering the most robust clinical results.",
+    description: "Deployed overnight before the faculty presentation and well-received by the supervising TA, CerebroScan is an academic image processing tool that classifies Alzheimer's stages from MRI scans. We engineered and evaluated ResNet-50, ResNet-101, and EfficientNet-B2 architectures. All achieved 98% accuracy, with ResNet-101 delivering the most robust clinical results.",
     cover: cerebroscanCover,
     behanceUrl:
       "https://www.behance.net/gallery/244723563/CerebroScan-AI-Powered-Alzheimers-Detection-Web-App",
@@ -92,7 +92,7 @@ const projects: Project[] = [
   {
     title: "Mohr's Circle Calculator",
     category: "Desktop App",
-    description: "Developed for a university stress analysis course to automate complex material calculations. The tool computes principal and shear stresses, and dynamically plots Mohr's Circle according to strict academic guidelines. It served as a highly accurate confirmation tool for students to validate their manual problem-solving.",
+    description: "Built when LLMs weren't yet reliable for coding help. Figured it out through raw research and YouTube deep-dives. This tool automates complex stress analysis calculations for a university course, computing principal and shear stresses and dynamically plotting Mohr's Circle to strict academic guidelines. One of the best submissions that cycle.",
     cover: matlabCover,
     behanceUrl:
       "https://www.behance.net/gallery/244679927/Mohrs-Circle-Stresses-Calculator-Engineering-UIUX",
@@ -106,7 +106,7 @@ const projects: Project[] = [
     title: "Deep-Learning-Powered System for Detecting Stages of Alzheimer's Disease",
     category: "Presentation",
     description:
-      "A comprehensive scientific presentation deck detailing deep learning methodologies for detecting Alzheimer's stages. Features custom data visualizations, clear typographic hierarchy, and professional slide layouts.",
+      "A comprehensive scientific presentation deck detailing deep learning methodologies for detecting Alzheimer's stages. Features custom data visualizations, clear typographic hierarchy, and professional slide layouts. Delivered to faculty and consistently among the highest-graded submissions in the batch.",
     cover: presentationAlzheimers,
     tags: [
       { label: "PowerPoint", Icon: PiMicrosoftPowerpointLogo },
@@ -375,7 +375,7 @@ const ProjectsSection = () => {
                     className="glass rounded-xl overflow-hidden glow-box group transition-all duration-300 flex flex-col"
                   >
                     {/* Cover Image */}
-                    <div className={`${project.category === "Presentation" ? "h-56 lg:h-72" : "h-52 lg:h-60"} bg-secondary overflow-hidden relative`}>
+                    <div className="h-56 lg:h-72 bg-secondary overflow-hidden relative">
                       {project.cover ? (
                         <img
                           src={project.cover}

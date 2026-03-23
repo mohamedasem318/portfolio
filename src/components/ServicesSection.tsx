@@ -1,18 +1,33 @@
 import { motion } from "framer-motion";
-import { BrainCircuit, Palette } from "lucide-react";
+import {
+  BrainCircuit,
+  Palette,
+  Rocket,
+  Monitor,
+  UserCircle,
+  AppWindow,
+  GraduationCap,
+  BarChart2,
+} from "lucide-react";
 
 const services = [
   {
     icon: BrainCircuit,
     title: "AI-Assisted Software Solutions",
-    description:
-      "Rapid prototyping and logic implementation powered by modern AI workflows. From concept to functional product in record time.",
+    subItems: [
+      { label: "SaaS Prototypes", icon: Rocket },
+      { label: "Landing Pages", icon: Monitor },
+      { label: "Personal Portfolios", icon: UserCircle },
+      { label: "Web Apps", icon: AppWindow },
+    ],
   },
   {
     icon: Palette,
     title: "Professional Presentation & Graphic Design",
-    description:
-      "Visual storytelling and brand identity through polished, high-end presentation decks and graphic assets.",
+    subItems: [
+      { label: "Academic & Research Decks", icon: GraduationCap },
+      { label: "Data Visualization", icon: BarChart2 },
+    ],
   },
 ];
 
@@ -42,10 +57,18 @@ const ServicesSection = () => {
               <div className="p-4 lg:p-5 rounded-2xl bg-primary/10 border border-primary/20 mb-6 lg:mb-8 inline-flex">
                 <service.icon className="text-primary" size={40} />
               </div>
-              <h3 className="font-bold text-xl lg:text-2xl mb-3 lg:mb-4">{service.title}</h3>
-              <p className="text-muted-foreground text-sm lg:text-base leading-relaxed max-w-sm">
-                {service.description}
-              </p>
+              <h3 className="font-bold text-xl lg:text-2xl mb-6 lg:mb-8">{service.title}</h3>
+              <div className="space-y-5 w-full">
+                {service.subItems.map((item) => (
+                  <div
+                    key={item.label}
+                    className="flex items-center gap-3 lg:gap-4 text-sm lg:text-base text-muted-foreground"
+                  >
+                    <item.icon size={18} className="text-primary/70 shrink-0" />
+                    {item.label}
+                  </div>
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>

@@ -15,6 +15,14 @@ import {
   SiAdobeillustrator,
 } from "react-icons/si";
 import { PiMicrosoftPowerpointLogo } from "react-icons/pi";
+import { CustomIcon } from "./ui/CustomIcon";
+import matlabAsset from "@/assets/matlab.png";
+import lovableAsset from "@/assets/lovable.png";
+import antigravityAsset from "@/assets/antigravity.png";
+
+const MatlabIcon = (props: any) => <CustomIcon src={matlabAsset} {...props} />;
+const LovableIcon = (props: any) => <CustomIcon src={lovableAsset} {...props} />;
+const AntigravityIcon = (props: any) => <CustomIcon src={antigravityAsset} {...props} />;
 
 const categories = [
   {
@@ -23,7 +31,7 @@ const categories = [
     skills: [
       { name: "Python", icon: SiPython },
       { name: "SQL", icon: Database },
-      { name: "MATLAB", icon: Terminal },
+      { name: "MATLAB", icon: MatlabIcon },
     ],
   },
   {
@@ -31,8 +39,8 @@ const categories = [
     icon: BrainCircuit,
     skills: [
       { name: "Prompt Engineering", icon: Sparkles },
-      { name: "Lovable", icon: Heart },
-      { name: "Antigravity", icon: Rocket },
+      { name: "Lovable", icon: LovableIcon },
+      { name: "Antigravity", icon: AntigravityIcon },
       { name: "Git / GitHub", icon: SiGithub },
     ],
   },

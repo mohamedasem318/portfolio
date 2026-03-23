@@ -9,13 +9,13 @@ const HeroSection = () => {
 
   return (
     <section className="min-h-screen flex items-center section-padding pt-24 border-b border-border">
-      <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-6xl mx-auto w-full grid md:grid-cols-3 gap-12 items-center">
         {/* Text Side */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="order-2 md:order-1"
+          className="order-2 md:order-1 md:col-span-2"
         >
           <h1 className="text-5xl sm:text-6xl lg:text-[5rem] xl:text-7xl font-extrabold leading-tight mb-2 whitespace-nowrap tracking-tight">
             Mohamed Assem
@@ -24,8 +24,8 @@ const HeroSection = () => {
             Software Engineer &{" "}
             <span className="glow-text">Creative Technologist</span>
           </h2>
-          <p className="text-lg sm:text-xl font-medium mb-10 text-muted-foreground max-w-lg leading-relaxed">
-            I don't just write code. I orchestrate digital ecosystems. Bridging complex engineering with creative design to build smart, secure, and visually striking experiences.
+          <p className="text-lg sm:text-xl font-medium mb-10 text-muted-foreground leading-relaxed text-balance">
+            I ship web products fast with AI-assisted workflows, without cutting corners on security. I craft presentations the hard way. And it shows.
           </p>
           <div className="flex flex-wrap gap-4">
             <a
