@@ -50,9 +50,10 @@ const ServicesSection = () => {
               key={service.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -4, transition: { duration: 0.2, ease: "easeOut" } }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.15 }}
-              className="glass rounded-2xl p-6 lg:p-10 glow-box flex flex-col items-center text-center hover:-translate-y-1 hover:bg-secondary/10 transition-all duration-300"
+              transition={{ y: { duration: 0.2, ease: "easeOut" }, opacity: { duration: 0.5, ease: "easeOut", delay: idx * 0.15 } }}
+              className="glass rounded-2xl p-6 lg:p-10 glow-box flex flex-col items-center text-center"
             >
               <div className="p-4 lg:p-5 rounded-2xl bg-primary/10 border border-primary/20 mb-6 lg:mb-8 inline-flex">
                 <service.icon className="text-primary" size={40} />

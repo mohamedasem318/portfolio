@@ -371,9 +371,9 @@ const ProjectsSection = () => {
                     viewport={{ once: true, margin: "-50px" }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.5, ease: "easeOut", delay: idx * 0.1 }}
-                    whileHover={{ y: -6 }}
-                    className="glass rounded-xl overflow-hidden glow-box group transition-all duration-300 flex flex-col"
+                    className="group flex"
                   >
+                    <div className="glass rounded-xl overflow-hidden glow-box flex flex-col w-full hover:-translate-y-1.5 transition-transform duration-200">
                     {/* Cover Image */}
                     <div className="h-56 lg:h-72 bg-secondary overflow-hidden relative">
                       {project.cover ? (
@@ -477,6 +477,7 @@ const ProjectsSection = () => {
                           </span>
                         ))}
                       </div>
+                    </div>
                     </div>
                   </motion.div>
                 );
