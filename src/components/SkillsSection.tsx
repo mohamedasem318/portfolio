@@ -75,7 +75,7 @@ const SkillsSection = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: catIdx * 0.15 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: catIdx * 0.15 }}
               className="glass rounded-xl p-6 lg:p-8 glow-box flex flex-col"
             >
               <div className="flex items-center gap-4 mb-8">
