@@ -8,6 +8,9 @@ import {
   AppWindow,
   GraduationCap,
   BarChart2,
+  Terminal,
+  Bot,
+  Table2,
 } from "lucide-react";
 
 const services = [
@@ -29,12 +32,20 @@ const services = [
       { label: "Data Visualization", icon: BarChart2 },
     ],
   },
+  {
+    icon: Terminal,
+    title: "Python Automation & Web Scraping",
+    subItems: [
+      { label: "Task Automation Scripts", icon: Bot },
+      { label: "Web Scraping & Data Extraction", icon: Table2 },
+    ],
+  },
 ];
 
 const ServicesSection = () => {
   return (
     <section id="services" className="min-h-screen flex flex-col justify-center section-padding bg-secondary/30 dark:bg-transparent border-b border-border">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -44,7 +55,7 @@ const ServicesSection = () => {
           Offered <span className="glow-text">Services</span>
         </motion.h2>
 
-        <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
           {services.map((service, idx) => (
             <motion.div
               key={service.title}
@@ -53,7 +64,7 @@ const ServicesSection = () => {
               whileHover={{ y: -4, transition: { duration: 0.2, ease: "easeOut" } }}
               viewport={{ once: true }}
               transition={{ y: { duration: 0.2, ease: "easeOut" }, opacity: { duration: 0.5, ease: "easeOut", delay: idx * 0.15 } }}
-              className="glass rounded-2xl p-6 lg:p-10 glow-box flex flex-col items-center text-center"
+              className="glass rounded-2xl p-6 lg:p-8 glow-box flex flex-col items-center text-center"
             >
               <div className="p-4 lg:p-5 rounded-2xl bg-primary/10 border border-primary/20 mb-6 lg:mb-8 inline-flex">
                 <service.icon className="text-primary" size={40} />

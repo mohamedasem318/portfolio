@@ -86,7 +86,7 @@ const EducationSection = () => {
                                             </div>
                                             <div>
                                                 <h3 className="font-bold text-lg lg:text-xl leading-tight mb-1">{item.title}</h3>
-                                                <p className="text-primary font-medium text-sm sm:text-base">{item.subtitle}</p>
+                                                <span className="text-primary font-medium text-sm sm:text-base block">{item.subtitle}</span>
                                             </div>
                                         </div>
                                         <div className="flex flex-wrap gap-2 shrink-0 md:mt-0">

@@ -8,8 +8,8 @@ const HeroSection = () => {
   const { vibrate } = useHaptics();
 
   return (
-    <section className="min-h-screen flex items-center section-padding pt-24 border-b border-border">
-      <div className="max-w-6xl mx-auto w-full grid md:grid-cols-3 gap-12 items-center">
+    <section className="min-h-screen flex items-center section-padding pt-20 sm:pt-24 border-b border-border">
+      <div className="max-w-6xl mx-auto w-full grid md:grid-cols-3 gap-8 md:gap-12 items-center">
         {/* Text Side */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -17,14 +17,14 @@ const HeroSection = () => {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="order-2 md:order-1 md:col-span-2"
         >
-          <h1 className="text-5xl sm:text-6xl lg:text-[5rem] xl:text-7xl font-extrabold leading-tight mb-2 whitespace-nowrap tracking-tight">
+          <h1 className="text-4xl sm:text-6xl lg:text-[5rem] xl:text-7xl font-extrabold leading-tight mb-2 tracking-tight text-left">
             Mohamed Assem
           </h1>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 text-muted-foreground">
+          <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold mb-5 sm:mb-8 text-muted-foreground text-left">
             Software Engineer &{" "}
             <span className="glow-text">Creative Technologist</span>
           </h2>
-          <p className="text-lg sm:text-xl font-medium mb-10 text-muted-foreground leading-relaxed text-balance">
+          <p className="text-base sm:text-xl font-medium mb-8 sm:mb-10 text-muted-foreground leading-relaxed text-left">
             I ship web products fast with AI-assisted workflows, without cutting corners on security. I craft presentations the hard way. And it shows.
           </p>
           <div className="flex flex-wrap gap-4">

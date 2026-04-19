@@ -91,7 +91,7 @@ const AboutSection = () => {
               </div>
             </motion.div>
 
-            <motion.div variants={fadeUp} className="text-muted-foreground space-y-4 text-lg leading-relaxed">
+            <motion.div variants={fadeUp} className="text-muted-foreground space-y-4 text-base sm:text-lg leading-relaxed">
               <p>
                 I am Mohamed Assem, a multidisciplinary technologist blending engineering with design. My journey began in customer service for US telecoms, an experience that taught me to navigate user frustration and build truly frictionless digital experiences.
               </p>

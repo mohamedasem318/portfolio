@@ -61,7 +61,7 @@ const SkillsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl sm:text-4xl lg:text-4xl font-bold mb-16 md:mb-20 text-center"
+          className="text-3xl sm:text-4xl lg:text-4xl font-bold mb-10 md:mb-16 lg:mb-20 text-center"
         >
           Skills & <span className="glow-text">Tech Arsenal</span>
         </motion.h2>

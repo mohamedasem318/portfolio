@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, X, ZoomIn } from "lucide-react";
+import { ExternalLink, X, ZoomIn, MoreVertical } from "lucide-react";
 import {
   SiPython,
   SiReact,
@@ -339,12 +339,25 @@ const ProjectCard = ({ project, idx, onLightbox }: ProjectCardProps) => {
   const images = project.images ?? [project.cover];
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isHovered || images.length <= 1) return;
     const id = setInterval(() => setActiveIndex((i) => (i + 1) % images.length), 2500);
     return () => clearInterval(id);
   }, [isHovered, images.length]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [menuOpen]);
 
   return (
     <motion.div
@@ -382,8 +395,8 @@ const ProjectCard = ({ project, idx, onLightbox }: ProjectCardProps) => {
             </div>
           )}
 
-          {/* Hover Overlay */}
-          <div className="absolute inset-0 bg-background/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+          {/* Hover Overlay — desktop only */}
+          <div className="absolute inset-0 bg-background/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex items-center justify-center">
             <div className="flex flex-col gap-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
               {isPresentation ? (
                 <button
@@ -434,6 +447,77 @@ const ProjectCard = ({ project, idx, onLightbox }: ProjectCardProps) => {
                 </>
               )}
             </div>
+          </div>
+
+          {/* Three-dot menu — mobile only */}
+          <div ref={menuRef} className="absolute top-2 right-2 md:hidden">
+            <button
+              onClick={() => { setMenuOpen((v) => !v); vibrate(30); }}
+              className="p-2 rounded-full bg-background/70 backdrop-blur-sm border border-border text-foreground shadow"
+              aria-label="Project options"
+            >
+              <MoreVertical size={16} />
+            </button>
+            <AnimatePresence>
+              {menuOpen && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: -4 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: -4 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute right-0 top-10 min-w-[160px] glass rounded-xl border border-border shadow-lg overflow-hidden z-10"
+                >
+                  {isPresentation ? (
+                    <button
+                      onClick={() => { onLightbox(project); vibrate(50); setMenuOpen(false); }}
+                      className="flex items-center gap-2.5 w-full px-4 py-3 text-sm font-medium hover:bg-primary/10 transition-colors"
+                    >
+                      <ZoomIn size={15} className="text-primary" />
+                      View Full Slide
+                    </button>
+                  ) : (
+                    <>
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => { vibrate(50); setMenuOpen(false); }}
+                          className="flex items-center gap-2.5 w-full px-4 py-3 text-sm font-medium hover:bg-primary/10 transition-colors"
+                        >
+                          <ExternalLink size={15} className="text-primary" />
+                          View Live Site
+                        </a>
+                      )}
+                      {project.repoUrl && (
+                        <a
+                          href={project.repoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => { vibrate(50); setMenuOpen(false); }}
+                          className="flex items-center gap-2.5 w-full px-4 py-3 text-sm font-medium hover:bg-primary/10 transition-colors"
+                        >
+                          <SiGithub size={15} className="text-primary" />
+                          View Source Code
+                        </a>
+                      )}
+                      {project.behanceUrl && (
+                        <a
+                          href={project.behanceUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => { vibrate(50); setMenuOpen(false); }}
+                          className="flex items-center gap-2.5 w-full px-4 py-3 text-sm font-medium hover:bg-primary/10 transition-colors"
+                        >
+                          <SiBehance size={15} className="text-primary" />
+                          View Case Study
+                        </a>
+                      )}
+                    </>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
 
@@ -521,7 +605,7 @@ const ProjectsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="flex flex-wrap justify-center gap-3 mb-12 md:mb-16"
+            className="flex flex-wrap justify-center gap-3 mb-8 md:mb-12 lg:mb-16"
           >
             {filters.map((f) => {
               const isActive = activeFilter === f;

@@ -56,7 +56,7 @@ const ContactSection = () => {
                     </p>
                 </motion.div>
 
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
+                <div className="grid md:grid-cols-2 gap-10 md:gap-12 lg:gap-20 items-stretch">
 
                     {/* Contact Form */}
                     <motion.div
@@ -64,7 +64,7 @@ const ContactSection = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="glass rounded-2xl p-8 glow-box flex flex-col justify-center"
+                        className="glass rounded-2xl p-5 sm:p-8 glow-box flex flex-col justify-center"
                     >
                         {isSuccess ? (
                             <motion.div
@@ -98,8 +98,9 @@ const ContactSection = () => {
                                             id="name"
                                             name="name"
                                             required
+                                            autoComplete="name"
                                             className="w-full bg-secondary/50 border border-border rounded-lg pl-12 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                                            placeholder="John Doe"
+                                            placeholder="Your name"
                                         />
                                     </div>
                                 </div>
@@ -113,8 +114,10 @@ const ContactSection = () => {
                                             id="email"
                                             name="email"
                                             required
+                                            autoComplete="email"
+                                            inputMode="email"
                                             className="w-full bg-secondary/50 border border-border rounded-lg pl-12 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                                            placeholder="john@example.com"
+                                            placeholder="your@email.com"
                                         />
                                     </div>
                                 </div>
@@ -129,7 +132,7 @@ const ContactSection = () => {
                                             required
                                             rows={4}
                                             className="w-full bg-secondary/50 border border-border rounded-lg pl-12 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
-                                            placeholder="Tell me about your project..."
+                                            placeholder="What can I help you with?"
                                         />
                                     </div>
                                 </div>
@@ -161,7 +164,7 @@ const ContactSection = () => {
                         transition={{ delay: 0.4 }}
                         className="flex flex-col justify-center gap-8"
                     >
-                        <div className="glass rounded-2xl p-8 hover:glow-box transition-all">
+                        <div className="glass rounded-2xl p-5 sm:p-8 hover:glow-box transition-all">
                             <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
                                 <Mail className="text-primary" /> Direct Email
                             </h3>
@@ -175,7 +178,7 @@ const ContactSection = () => {
                             </a>
                         </div>
 
-                        <div className="glass rounded-2xl p-8 hover:glow-box transition-all">
+                        <div className="glass rounded-2xl p-5 sm:p-8 hover:glow-box transition-all">
                             <h3 className="text-xl font-bold mb-6">Connect Professionally</h3>
                             <div className="grid grid-cols-3 gap-4">
                                 <a

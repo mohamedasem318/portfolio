@@ -17,7 +17,7 @@ const Index = () => {
   const { isDark, toggle } = useTheme();
 
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+    <div className="min-h-screen bg-background text-foreground transition-colors duration-300 safe-bottom">
       <Navbar isDark={isDark} onToggleTheme={toggle} />
       <main>
         <HeroSection />
