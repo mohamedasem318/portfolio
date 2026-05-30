@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,76 +6,72 @@
 
 @layer base {
   :root {
-    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-sans: 'Nunito', system-ui, sans-serif;
 
-    /* OPTION B - Deep Forest & Amber (Light) */
-    --background: 60 20% 96%;
-    --foreground: 150 20% 12%;
+    /* NAVY — Light */
+    --background: 214 32% 95%;
+    --foreground: 219 46% 15%;
 
-    --card: 60 15% 99%;
-    --card-foreground: 150 20% 12%;
+    --card: 210 33% 99%;
+    --card-foreground: 219 46% 15%;
 
-    --popover: 60 15% 99%;
-    --popover-foreground: 150 20% 12%;
+    --popover: 210 33% 99%;
+    --popover-foreground: 219 46% 15%;
 
-    --primary: 38 88% 43%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 219 54% 19%;
+    --primary-foreground: 210 33% 98%;
 
-    --secondary: 60 15% 88%;
-    --secondary-foreground: 150 20% 12%;
+    --secondary: 216 33% 91%;
+    --secondary-foreground: 219 46% 15%;
 
-    --muted: 60 12% 92%;
-    --muted-foreground: 150 8% 44%;
+    --muted: 214 30% 90%;
+    --muted-foreground: 219 24% 40%;
 
-    --accent: 38 90% 50%;
-    --accent-foreground: 150 20% 8%;
+    --accent: 213 58% 33%;
+    --accent-foreground: 210 33% 98%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 72% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 60 15% 84%;
-    --input: 60 15% 84%;
-    --ring: 38 90% 50%;
-    --radius: 0.75rem;
+    --border: 216 28% 84%;
+    --input: 216 28% 84%;
+    --ring: 213 58% 33%;
+    --radius: 0.9rem;
 
-    --glass-bg: 60 20% 96% / 0.75;
-    --glass-border: 60 10% 78% / 0.5;
-    --glow: 38 90% 55%;
+    --shadow-color: 219 42% 38%;
   }
 
   .dark {
-    /* OPTION A/B Hybrid - Slate Charcoal & Amber (Dark) */
-    --background: 220 10% 9%;
-    --foreground: 220 10% 92%;
+    /* NAVY — Dark (default) */
+    --background: 220 46% 10%;
+    --foreground: 43 32% 89%;
 
-    --card: 220 10% 12%;
-    --card-foreground: 220 10% 92%;
+    --card: 220 40% 15%;
+    --card-foreground: 43 32% 89%;
 
-    --popover: 220 10% 12%;
-    --popover-foreground: 220 10% 92%;
+    --popover: 220 40% 14%;
+    --popover-foreground: 43 32% 89%;
 
-    --primary: 38 95% 58%;
-    --primary-foreground: 220 10% 9%;
+    --primary: 41 52% 77%;
+    --primary-foreground: 220 46% 10%;
 
-    --secondary: 220 10% 15%;
-    --secondary-foreground: 220 10% 92%;
+    --secondary: 220 40% 19%;
+    --secondary-foreground: 43 30% 88%;
 
-    --muted: 220 10% 15%;
-    --muted-foreground: 220 10% 55%;
+    --muted: 220 30% 18%;
+    --muted-foreground: 220 20% 68%;
 
-    --accent: 38 95% 58%;
-    --accent-foreground: 220 10% 9%;
+    --accent: 41 52% 77%;
+    --accent-foreground: 220 46% 10%;
 
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 220 10% 92%;
+    --destructive: 0 64% 56%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 220 10% 20%;
-    --input: 220 10% 20%;
-    --ring: 38 95% 58%;
+    --border: 220 28% 24%;
+    --input: 220 28% 24%;
+    --ring: 41 52% 77%;
 
-    --glass-bg: 220 10% 13% / 0.65;
-    --glass-border: 220 10% 28% / 0.4;
-    --glow: 38 95% 60%;
+    --shadow-color: 220 65% 3%;
   }
 }
 
@@ -97,8 +93,8 @@
 
   /* Custom Selection Color */
   ::selection {
-    background-color: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
+    background-color: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
   }
 
   /* Custom Scrollbar */
@@ -112,29 +108,33 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--primary) / 0.8);
+    background: hsl(var(--accent) / 0.75);
     border-radius: 5px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--primary) / 1);
+    background: hsl(var(--accent));
   }
 }
 
 @layer components {
+  /* Solid, near-opaque surface — no glassmorphism blur */
   .glass {
-    @apply backdrop-blur-xl border;
-    background: hsl(var(--glass-bg));
-    border-color: hsl(var(--glass-border));
+    @apply border;
+    background: hsl(var(--card) / 0.92);
+    border-color: hsl(var(--border));
   }
 
+  /* Accent-colored emphasis text — no neon glow */
   .glow-text {
-    color: hsl(var(--primary));
-    text-shadow: 0 0 20px hsl(var(--glow) / 0.3);
+    color: hsl(var(--accent));
   }
 
+  /* Soft elevation — no glow */
   .glow-box {
-    box-shadow: 0 0 30px -5px hsl(var(--glow) / 0.15);
+    box-shadow:
+      0 18px 44px -26px hsl(var(--shadow-color) / 0.7),
+      0 4px 14px -10px hsl(var(--shadow-color) / 0.45);
   }
 
   .section-padding {
@@ -145,8 +145,65 @@
 @layer utilities {
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.6));
+    background-image: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent) / 0.65));
   }
+}
+
+/* ── Hero → About portrait morph ───────────────────────────────────── */
+.portrait-anchor {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid hsl(var(--border));
+  box-shadow:
+    0 18px 44px -26px hsl(var(--shadow-color) / 0.7),
+    0 4px 14px -10px hsl(var(--shadow-color) / 0.45);
+}
+.portrait-static {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+}
+#morph-portrait {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 30;
+  overflow: hidden;
+  display: none;
+  pointer-events: none;
+  will-change: transform, width, height, border-radius;
+  border: 1px solid hsl(var(--border));
+  box-shadow:
+    0 26px 60px -30px hsl(var(--shadow-color) / 0.75),
+    0 6px 18px -12px hsl(var(--shadow-color) / 0.5);
+}
+#morph-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+}
+/* When the traveling morph is active (desktop, motion ok), the anchors
+   become invisible space and the static fallbacks are hidden — so a
+   paused mid-scroll never shows an empty framed placeholder. */
+[data-morph="on"] .portrait-anchor {
+  border-color: transparent;
+  box-shadow: none;
+  background: transparent;
+}
+[data-morph="on"] .portrait-static {
+  visibility: hidden;
+}
+[data-morph="on"] #morph-portrait {
+  display: block;
+}
+@media (prefers-reduced-motion: reduce) {
+  #morph-portrait { display: none !important; }
+  .portrait-static { visibility: visible !important; }
+  .portrait-anchor { border-color: hsl(var(--border)) !important; }
 }
 
 /* Mobile text justification */

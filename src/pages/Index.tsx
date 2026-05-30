@@ -7,6 +7,7 @@ import ProjectsSection from "@/components/ProjectsSection";
 import ServicesSection from "@/components/ServicesSection";
 import ContactSection from "@/components/ContactSection";
 import ScrollToTop from "@/components/ScrollToTop";
+import MorphPortrait from "@/components/MorphPortrait";
 import Footer from "@/components/Footer";
 import { useTheme } from "@/hooks/useTheme";
 
@@ -19,6 +20,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300 safe-bottom">
       <Navbar isDark={isDark} onToggleTheme={toggle} />
+      <MorphPortrait />
       <main>
         <HeroSection />
         <AboutSection />

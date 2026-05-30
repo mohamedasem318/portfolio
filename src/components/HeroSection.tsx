@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Download, ArrowDown } from "lucide-react";
-import avatarImg from "@/assets/avatar-resized.png";
+import portraitImg from "@/assets/portrait.jpg";
 import cvPdf from "@/assets/Mohamed Assem Adel CV.pdf";
 import { useHaptics } from "@/hooks/useHaptics";
 
@@ -31,7 +31,7 @@ const HeroSection = () => {
             <a
               href="#contact"
               onClick={() => vibrate(50)}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold shadow-[0_0_20px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)] hover:scale-105 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold shadow-[0_10px_28px_-12px_hsl(var(--shadow-color)/0.65)] hover:-translate-y-0.5 hover:shadow-[0_16px_36px_-14px_hsl(var(--shadow-color)/0.7)] transition-all"
             >
               Get in Touch
             </a>
@@ -39,7 +39,7 @@ const HeroSection = () => {
               href={cvPdf}
               download="Mohamed_Assem_CV.pdf"
               onClick={() => vibrate(50)}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/50 text-foreground font-semibold hover:bg-primary/10 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground font-semibold hover:border-accent hover:text-accent hover:-translate-y-0.5 transition-all"
             >
               <Download size={18} />
               Download CV
@@ -55,23 +55,22 @@ const HeroSection = () => {
           </div>
         </motion.div>
 
-        {/* Avatar Side */}
+        {/* Avatar Side — morph anchor (the traveling portrait docks here) */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.4 }}
           className="order-1 md:order-2 flex justify-center"
         >
-          <div className="animate-float">
-            <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden glow-box border-2 border-primary/30">
-              <img
-                src={avatarImg}
-                alt="Mohamed - Software Engineer avatar"
-                className="w-full h-full object-cover scale-[1.25] -translate-x-4 sm:-translate-x-6 translate-y-2"
-              />
-              {/* Inner vignetter (Dark Mode Only) */}
-              <div className="absolute inset-0 rounded-full pointer-events-none dark:shadow-[inset_0_0_50px_20px_hsl(var(--background))]" />
-            </div>
+          <div
+            id="hero-portrait-anchor"
+            className="portrait-anchor rounded-full w-64 h-64 sm:w-80 sm:h-80"
+          >
+            <img
+              src={portraitImg}
+              alt="Mohamed Assem"
+              className="portrait-static"
+            />
           </div>
         </motion.div>
       </div>

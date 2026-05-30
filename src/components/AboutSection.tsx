@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { FaMapMarkerAlt, FaGlobe, FaBriefcase } from "react-icons/fa";
-import aboutMeImg from "@/assets/aboutmeavatar.png";
+import portraitImg from "@/assets/portrait.jpg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -30,22 +30,23 @@ const AboutSection = () => {
             </h2>
           </motion.div>
 
-          {/* The Glowing Frame */}
+          {/* Portrait — morph landing anchor */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.3 }}
+            transition={{ duration: 0.6 }}
             className="flex justify-center lg:justify-start"
           >
-            <div className="animate-float">
-              <div className="relative w-full max-w-md aspect-[4/5] rounded-2xl overflow-hidden border border-primary/30 shadow-[0_0_30px_hsl(var(--primary)/0.25)] glow-box">
-                <img
-                  src={aboutMeImg}
-                  alt="Mohamed Assem - Portrait"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            <div
+              id="about-portrait-anchor"
+              className="portrait-anchor w-full max-w-md aspect-[4/5] rounded-2xl"
+            >
+              <img
+                src={portraitImg}
+                alt="Mohamed Assem — Portrait"
+                className="portrait-static"
+              />
             </div>
           </motion.div>
 
@@ -77,16 +78,16 @@ const AboutSection = () => {
               variants={fadeUp}
               className="flex flex-wrap gap-3 mt-4 mb-6"
             >
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/20 text-sm font-medium hover:glow-box transition-all">
-                <FaMapMarkerAlt className="text-primary" />
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium hover:border-accent transition-colors">
+                <FaMapMarkerAlt className="text-accent" />
                 <span>Giza, Egypt</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/20 text-sm font-medium hover:glow-box transition-all">
-                <FaBriefcase className="text-primary" />
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium hover:border-accent transition-colors">
+                <FaBriefcase className="text-accent" />
                 <span>Available for Freelance</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/20 text-sm font-medium hover:glow-box transition-all">
-                <FaGlobe className="text-primary" />
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium hover:border-accent transition-colors">
+                <FaGlobe className="text-accent" />
                 <span>Arabic & English</span>
               </div>
             </motion.div>

@@ -73,7 +73,7 @@ const EducationSection = () => {
                                 className="relative mb-16 sm:mb-20 pl-8 sm:pl-12 last:mb-0"
                             >
                                 {/* Timeline node */}
-                                <div className="absolute -left-[11px] top-6 h-5 w-5 rounded-full bg-primary flex items-center justify-center ring-4 ring-background shadow-[0_0_10px_rgba(var(--primary),0.5)]">
+                                <div className="absolute -left-[11px] top-6 h-5 w-5 rounded-full bg-accent flex items-center justify-center ring-4 ring-background">
                                     <div className="h-2 w-2 rounded-full bg-background" />
                                 </div>
 
@@ -109,7 +109,7 @@ const EducationSection = () => {
                                     {/* Footer */}
                                     {item.footer && (
                                         <div className="mt-6 pt-5 border-t border-primary/10 flex justify-end">
-                                            <span className="inline-flex items-center text-sm font-bold text-primary bg-primary/10 px-5 py-2 rounded-full border border-primary/20 shadow-[0_0_10px_rgba(var(--primary),0.1)]">
+                                            <span className="inline-flex items-center text-sm font-bold text-accent bg-accent/10 px-5 py-2 rounded-full border border-accent/25">
                                                 {item.footer}
                                             </span>
                                         </div>

@@ -72,9 +72,9 @@ interface Project {
 }
 
 const categoryStyles: Record<ProjectCategory, string> = {
-  "Web App": "bg-sky-500/15 text-sky-600 dark:text-sky-400 border-sky-500/30",
-  "Desktop App": "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30",
-  "Presentation": "bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/30",
+  "Web App": "bg-blue-500/15 text-blue-700 dark:text-blue-300 border-blue-500/30",
+  "Desktop App": "bg-slate-400/15 text-slate-600 dark:text-slate-300 border-slate-400/30",
+  "Presentation": "bg-rose-500/15 text-rose-600 dark:text-rose-300 border-rose-500/30",
 };
 
 const projects: Project[] = [

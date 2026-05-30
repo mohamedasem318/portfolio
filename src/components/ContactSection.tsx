@@ -141,7 +141,7 @@ const ContactSection = () => {
                                     type="submit"
                                     onClick={() => vibrate(50)}
                                     disabled={isSubmitting}
-                                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 hover:scale-[1.02] transition-all shadow-[0_0_20px_hsl(var(--primary)/0.3)] disabled:opacity-50 disabled:hover:scale-100"
+                                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 hover:-translate-y-0.5 transition-all shadow-[0_10px_28px_-12px_hsl(var(--shadow-color)/0.6)] disabled:opacity-50 disabled:hover:translate-y-0"
                                 >
                                     {isSubmitting ? (
                                         <div className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
