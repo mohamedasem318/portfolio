@@ -119,7 +119,7 @@ const projects: Project[] = [
     images: [cerebroscanCover, cerebroscanLight, cerebroscanResulthealthy, cerebroscanResultunsure, cerebroscanIphone],
     behanceUrl:
       "https://www.behance.net/gallery/244723563/CerebroScan-AI-Powered-Alzheimers-Detection-Web-App",
-    liveUrl: "https://cerebroscan.netlify.app/",
+    liveUrl: "https://cerebroscan.vercel.app/",
     tags: [
       { label: "React", Icon: SiReact },
       { label: "Python", Icon: SiPython },
