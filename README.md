@@ -135,12 +135,15 @@ public/
 
 ## Deployment
 
-The site is configured to deploy directly to GitHub Pages.
+The site deploys to GitHub Pages automatically via GitHub Actions.
 
-**Deploying Updates**:
+**Deploying Updates**: push to `main`. The workflow in `.github/workflows/deploy.yml`
+builds the site and publishes `dist/` to Pages. No local deploy step is needed.
+
+To re-run a deploy without pushing a commit:
 ```sh
-# This will automatically build the site and push it to the gh-pages branch
-npm run deploy
+gh workflow run deploy.yml
 ```
 
-After deploying, it may take 1-2 minutes for GitHub Pages to refresh the live site.
+A deploy usually completes in about a minute. Check progress with `gh run list`
+or in the repo's Actions tab.
