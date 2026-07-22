@@ -13,8 +13,11 @@ dist-ssr
 *.local
 
 # Generated reports & artifacts
-eslint-report*.json
+eslint-report*
 *.timestamp-*.mjs
+
+# Claude Code machine-local settings (shared config in .claude/ stays tracked)
+.claude/settings.local.json
 
 # Editor directories and files
 .vscode/*
